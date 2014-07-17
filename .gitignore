@@ -1,2 +1,5 @@
-bower_components/
-node_modules/
+frontend/bower_components/
+frontend/node_modules/
+backend/vendor/
+composer.phar
+założenia.html
