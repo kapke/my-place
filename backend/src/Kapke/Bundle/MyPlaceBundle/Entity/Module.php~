@@ -1,0 +1,80 @@
+<?php
+namespace Kapke\Bundle\MyPlaceBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Kapke\Bundle\MyPlaceBundle\DependencyInjection\Serializer;
+use JsonSerializable;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="my_place__module")
+ */
+class Module implements JsonSerializable {
+	use Serializer;
+
+	private $serializableProperties = [['name' => 'id'], ['name' => 'name']];
+	/**
+	 * @ORM\Column(type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	private $id;
+	/**
+	 * @ORM\Column(type="string")
+	 * @var string
+	 */
+	private $name;
+
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $slug;
+
+	public function __construct ($name, $slug=null) {
+		$this->name = $name;
+        if(!$slug) {
+            $this->slug = $this->generateSlug($name);
+        } else {
+            $this->slug = $slug;
+        }
+	}
+
+    private function generateSlug ($name) {
+        $slug = iconv('UTF-8', 'ASCII//TRANSLIT', $name);
+        return $name;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Module
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+}

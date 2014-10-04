@@ -1,0 +1,3 @@
+kapke_my_place:
+    module:
+        name: SomeModule

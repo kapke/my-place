@@ -1,0 +1,10 @@
+kapke_my_place:
+    resource: "@KapkeMyPlaceBundle/Resources/config/routing.yml"
+    prefix:   /
+module_client_conversions:
+    resource: "@ClientConversionsModuleBundle/Resources/config/routing.yml"
+    prefix:   /client_conversions/
+module_client_data:
+    resource: "@ClientDataModuleBundle/Resources/config/routing.yml"
+    prefix:   /client_data/
+

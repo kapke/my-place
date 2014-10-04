@@ -12,6 +12,8 @@
     "tests"
   ],
   "dependencies": {
-    "angularjs": "*"
+    "angular": "*",
+    "angular-resource": "~1.2.21",
+    "angular-route": "~1.2.22"
   }
 }

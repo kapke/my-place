@@ -4,6 +4,7 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
+        "psr-4": { "Module\\": "modules/" },
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
     "require": {
@@ -17,7 +18,10 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "friendsofsymfony/rest-bundle": "*",
+        "jms/serializer": "*",
+        "jms/serializer-bundle": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
