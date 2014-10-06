@@ -1,0 +1,3 @@
+clients:
+    type: rest
+    resource: Module\Kapke\ClientConversions\Controller\ClientsController

@@ -27,6 +27,7 @@ class KapkeMyPlaceExtension extends Extension
         foreach($configs as $config) {
             if(isset($config['module'])) {
                 $modules = $container->hasParameter('kapke_my_place.modules')?$container->getParameter('kapke_my_place.modules'):[];
+                print_r($modules);
                 $modules[$config['module']['name']] = $config['module'];
                 $container->setParameter('kapke_my_place.modules', $modules);
             }

@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Loader;
 use Kapke\Bundle\MyPlaceBundle\DependencyInjection\Configuration;
 use Kapke\Bundle\MyPlaceBundle\DependencyInjection\KapkeMyPlaceExtension;
 
-class ModuleExtension extends Extension {
+abstract class ModuleExtension extends Extension {
 	private $dir;
 
 	public function __construct () {

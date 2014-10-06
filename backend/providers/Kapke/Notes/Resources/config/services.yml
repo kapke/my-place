@@ -1,0 +1,10 @@
+parameters:
+#    kapke_my_place.example.class: Kapke\Bundle\MyPlaceBundle\Example
+
+services:
+    kapke_notes_provider.notes_manager:
+        class: Provider\Kapke\Notes\NotesManager
+        arguments: [@doctrine]
+#    kapke_my_place.example:
+#        class: %kapke_my_place.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

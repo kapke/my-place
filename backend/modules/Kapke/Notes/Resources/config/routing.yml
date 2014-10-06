@@ -1,0 +1,3 @@
+notes:
+    type: rest
+    resource: Module\Kapke\Notes\Controller\NotesController

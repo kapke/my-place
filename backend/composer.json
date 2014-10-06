@@ -4,7 +4,10 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-4": { "Module\\": "modules/" },
+        "psr-4": { 
+            "Module\\": "modules/",
+            "Provider\\": "providers/"
+        },
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
     "require": {
