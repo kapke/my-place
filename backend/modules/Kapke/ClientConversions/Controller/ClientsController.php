@@ -6,7 +6,9 @@ use FOS\RestBundle\View\View;
 
 class ClientsController extends FOSRestController {
 	public function getClientsAction () {
-		$view = $this->view(['ala', 'ma', 'kota']);
+		$clientManager = $this->get('kapke_client_provider.client_manager');
+		$output = $clientManager->getClients();
+		$view = $this->view($output);
 		return $this->handleView($view);
 	}
 }

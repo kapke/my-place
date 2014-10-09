@@ -6,7 +6,7 @@ class NotesManager {
 	private $notesRepo;
 
 	public function __construct ($doctrine) {
-		$this->orm = $doctrine->getEntityManager();
+		$this->orm = $doctrine->getManager();
 	}
 
 	public function getNotes () {

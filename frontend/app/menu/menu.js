@@ -1,5 +1,5 @@
 'use strict';
-Kapke.MyPlace.Menu = angular.module('MyPlace.Menu', []).
+angular.module('MyPlace.Menu', []).
 controller('MyPlace.Menu.menuCtrl', ['$scope', function ($scope) {
 
 }]).

@@ -1,14 +1,19 @@
-Kapke.MyPlace.Module = angular.module('MyPlace.Module', ['MyPlace.Module.ModuleManager', 'MyPlace.Module.ModuleList']).
-controller('MyPlace.ModuleCtrl', ['$scope', '$state', '$resource', 'MyPlace.configService', function ($scope, $state, $resource, Config) {
-	var actualModuleName = $state.params.module;
-	$scope.moduleTemplate = 'frontend/modules/'+actualModuleName+'/template/main.html';
+function moduleCtrl ($scope, $state, $resource, Config, moduleManager) {
+	$scope.actualTemplate = '';
 	$scope.$on('stateChangeSuccess', function () {
-		actualModuleName = $state.params.module;
-		$scope.moduleTemplate = 'frontend/modules/'+actualModuleName+'/template/main.html';
+		moduleManager.setActiveModule($state.params.module);
 	});
-	$scope.showParams = function () {
-		console.log($state.current);
-		console.log($state.params);
-	}
-	$scope.showParams();
-}]);
+	moduleManager.addEventListener('activeModuleChanged', function () {
+		var actualModule = moduleManager.getActiveModule()
+		  , slug = actualModule.slug
+		  , view = 'main'
+		  ;
+		$scope.actualTemplate = 'frontend/modules/'+slug+'/template/'+view+'.html'
+	});
+	moduleManager.setActiveModule($state.params.module);
+}
+
+moduleCtrl.$inject = ['$scope', '$state', '$resource', 'MyPlace.configService', 'MyPlace.Module.moduleManager'];
+
+angular.module('MyPlace.Module', ['MyPlace.Utils', 'MyPlace.Api']).
+controller('MyPlace.Module.moduleCtrl', moduleCtrl);

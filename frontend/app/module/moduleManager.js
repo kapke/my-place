@@ -1,16 +1,45 @@
-'use strict';
-Kapke.MyPlace.Module.ModuleManager = angular.module('MyPlace.Module.ModuleManager', []).
-service('MyPlace.Module.moduleManagerService', ['', function() {
-	var modules = [];
+function moduleManager ($state, api, EventListener) {
+	EventListener.call(this);
 
-	this.register = register;
-	this.getModuleList = getModuleList;
+	(function () {
+		var modules = api.Module.query(function () {
+			modules.forEach(function (module) {
+				registerModule(module);
+			});
+		});
+	})();
+	var that = this
+	  , modules = []
+	  , modulesBySlug = {}
+	  , activeModule = null
+	  ;
 
-	function getModuleList () {
+	this.registerModule = registerModule;
+	this.getModules = getModules;
+	this.setActiveModule = setActiveModule;
+	this.getActiveModule = getActiveModule;
+
+	function getModules () {
 		return modules;
 	}
 
-	function register (module) {
+	function registerModule (module) {
 		modules.push(module);
+		modulesBySlug[module.slug] = module;
+		that.launchEvent('moduleListChanged');
 	}
-}]);
+
+	function setActiveModule (moduleSlug) {
+		activeModule = moduleSlug;
+		that.launchEvent('activeModuleChanged');
+	}
+
+	function getActiveModule () {
+		return modulesBySlug[activeModule];
+	}
+}
+
+moduleManager.$inject = ['$state', 'MyPlace.apiService', 'MyPlace.Utils.EventListener'];
+
+angular.module('MyPlace.Module').
+service('MyPlace.Module.moduleManager', moduleManager);
