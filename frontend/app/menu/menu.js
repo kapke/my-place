@@ -1,11 +1,26 @@
 'use strict';
-angular.module('MyPlace.Menu', []).
-controller('MyPlace.Menu.menuCtrl', ['$scope', function ($scope) {
+function menuCtrl ($scope, menuManager) {
 
-}]).
-directive('myPlaceMenuMenu', function () {
+}
+
+menuCtrl.$inject = ['$scope', 'MyPlace.Menu.menuManager'];
+
+function menuDirective (menuManager) {
 	return {
 		restrict: 'E',
-		template: '<div>Tu będzie menu</div>'
+		controller: function ($scope) {
+			$scope.menu = [];
+			menuManager.addEventListener('menuUpdated', function () {
+				$scope.menu = menuManager.getActualMenu();
+			});
+		},
+		templateUrl: 'frontend/template/menu/menu.tpl'
 	};
-});
+}
+
+menuDirective.$inject = ['MyPlace.Menu.menuManager'];
+
+angular.module('MyPlace.Menu', [])
+.controller('MyPlace.Menu.menuCtrl', menuCtrl)
+.directive('myPlaceMenu', menuDirective)
+;

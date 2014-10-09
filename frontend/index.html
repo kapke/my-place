@@ -13,13 +13,14 @@
 	<script src="frontend/app/utils/utils.js"></script>
 	<script src="frontend/app/utils/EventListener.js"></script>
 	<script src="frontend/app/menu/menu.js"></script>
+	<script src="frontend/app/menu/menuManager.js"></script>
 	<script src="frontend/app/module/module.js"></script>
 	<script src="frontend/app/module/moduleManager.js"></script>
 	<script src="frontend/app/module/moduleList.js"></script>
 </head>
 <body ng-app="MyPlace">
 	<my-place-module-list ng-controller="MyPlace.Module.moduleListCtrl"></my-place-module-list>
-	<my-place-menu-menu ng-controller="MyPlace.Menu.menuCtrl"></my-place-menu-menu>
-	<ui-view />
+	<my-place-menu ng-controller="MyPlace.Menu.menuCtrl"></my-place-menu>
+	<ui-view></ui-view>
 </body>
 </html>

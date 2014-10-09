@@ -1,5 +1,6 @@
 'use strict';
-Kapke.MyPlace.config(function ($stateProvider) {
+angular.module('MyPlace')
+.config(function ($stateProvider) {
 	$stateProvider
 	.state('module', {
 		url: '/:module/:view',

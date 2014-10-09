@@ -1,3 +1,4 @@
+'use strict';
 function moduleList (moduleManager) {
 	return {
 		restrict: 'E',
@@ -16,6 +17,6 @@ function moduleListCtrl () {
 }
 
 
-angular.module('MyPlace.Module').
-controller('MyPlace.Module.moduleListCtrl', moduleListCtrl).
-directive('myPlaceModuleList', moduleList);
+angular.module('MyPlace.Module')
+.controller('MyPlace.Module.moduleListCtrl', moduleListCtrl)
+.directive('myPlaceModuleList', moduleList);
