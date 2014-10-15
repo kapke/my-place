@@ -1,22 +1,26 @@
 'use strict';
-function moduleCtrl ($scope, $state, $resource, Config, moduleManager) {
+function moduleCtrl ($scope, $rootScope, $state, $resource, Config, moduleManager) {
+	var activeModule = ''
+	  , activeView = ''
+	  ;
+	  
 	$scope.actualTemplate = '';
-	$scope.$on('stateChangeSuccess', function () {
-		moduleManager.setActiveModule($state.params.module);
+	$rootScope.$on('$stateChangeSuccess', function () {
+		moduleManager.setActiveModuleAndView($state.params.module, $state.params.view);
 	});
-	moduleManager.addEventListener('activeModuleChanged', function () {
-		var actualModule = moduleManager.getActiveModule()
-		if(actualModule) {
-			var slug = actualModule.slug
-			  , view = 'main'
-			  ;
-			$scope.actualTemplate = 'frontend/modules/'+slug+'/template/'+view+'.html'
-		}
+	moduleManager.addEventListener('activeModuleAndViewChanged', function (module, view) {
+		activeModule = module;
+		activeView = view;
+		setActualTemplate();
 	});
-	moduleManager.setActiveModule($state.params.module);
+
+	function setActualTemplate () {
+		$scope.actualTemplate = 'frontend/modules/'+activeModule+'/template/'+activeView+'.tpl';
+	}
 }
 
-moduleCtrl.$inject = ['$scope', '$state', '$resource', 'MyPlace.configService', 'MyPlace.Module.moduleManager'];
+moduleCtrl.$inject = ['$scope', '$rootScope', '$state', '$resource', 'MyPlace.configService', 'MyPlace.Module.moduleManager'];
 
 angular.module('MyPlace.Module', ['MyPlace.Utils', 'MyPlace.Api'])
-.controller('MyPlace.Module.moduleCtrl', moduleCtrl);
+.controller('MyPlace.Module.moduleCtrl', moduleCtrl)
+;

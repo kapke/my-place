@@ -13,11 +13,14 @@ function moduleManager ($state, api, EventListener) {
 	  , modules = []
 	  , modulesBySlug = {}
 	  , activeModule = null
+	  , activeView = 'main'
 	  ;
 
 	this.registerModule = registerModule;
 	this.getModules = getModules;
+	this.setActiveModuleAndView = setActiveModuleAndView;
 	this.setActiveModule = setActiveModule;
+	this.setActiveView = setActiveView;
 	this.getActiveModule = getActiveModule;
 
 	function getModules () {
@@ -28,15 +31,36 @@ function moduleManager ($state, api, EventListener) {
 		modules.push(module);
 		modulesBySlug[module.slug] = module;
 		that.launchEvent('moduleListChanged');
+		that.launchEvent('moduleAdded', [module.slug]);
+	}
+
+	function setActiveModuleAndView (module, view) {
+		setActiveModule(module);
+		setActiveView(view);
+		that.launchEvent('activeModuleAndViewChanged', [activeModule, activeView]);
 	}
 
 	function setActiveModule (moduleSlug) {
-		activeModule = moduleSlug;
-		that.launchEvent('activeModuleChanged');
+		if(activeModule != moduleSlug) {
+			activeModule = moduleSlug;
+			that.launchEvent('activeModuleChanged', [activeModule]);	
+		}
 	}
 
 	function getActiveModule () {
 		return modulesBySlug[activeModule];
+	}
+
+	function setActiveView (view) {
+		view = view || 'main';
+		if(activeView != view) {
+			activeView = view;
+			that.launchEvent('activeViewChanged', [activeView])	
+		}
+	}
+
+	function getActiveView () {
+		return activeView;
 	}
 }
 

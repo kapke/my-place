@@ -1,0 +1,8 @@
+{
+	"items": [
+		{
+			"title": "ClientData.clients",
+			"view": "clients"
+		}
+	]
+}

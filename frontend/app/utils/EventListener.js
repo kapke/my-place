@@ -25,9 +25,11 @@ function EventListener () {
 	}
 	function launchEvent (name, params, that) {
 		that = that || this;
-		events[name].forEach(function (listener) {
-			listener.apply(that, params);
-		});
+		if(events[name]) {
+			events[name].forEach(function (listener) {
+				listener.apply(that, params);
+			});	
+		}
 	}
 }
 

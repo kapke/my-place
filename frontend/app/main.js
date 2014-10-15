@@ -1,2 +1,2 @@
 'use strict';
-angular.module('MyPlace', ['ui.router', 'MyPlace.Menu', 'MyPlace.Module']);
+angular.module('MyPlace', ['ui.router', 'MyPlace.Translate', 'MyPlace.Menu', 'MyPlace.Module', 'ClientData']);

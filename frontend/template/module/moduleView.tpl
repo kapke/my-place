@@ -1,1 +1,1 @@
-<ng-include ng-controller="MyPlace.Module.moduleCtrl" ng-if="actualTemplate" src="actualTemplate" />
+<ng-include ng-if="actualTemplate" src="actualTemplate" />

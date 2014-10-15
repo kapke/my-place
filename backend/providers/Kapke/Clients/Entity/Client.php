@@ -29,4 +29,12 @@ class Client {
 		$this->name = $name;
 		$this->surname = $surname;
 	}
+
+	public function setName ($name) {
+		$this->name = $name;
+	}
+
+	public function setSurname ($surname) {
+		$this->surname = $surname;
+	}
 }

@@ -1,7 +1,8 @@
 {
 	"items": [
 		{
-			"title": "Przegląd"
+			"title": "ClientConversions.preview",
+			"view": "preview"
 		}
 	]
 }

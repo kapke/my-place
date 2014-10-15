@@ -4,6 +4,8 @@ function menuManager (EventListener, api, moduleManager) {
 	var that = this
 	  , actualMenu = {}
 	  , actualModule = null
+	  , downloadTries = 0
+	  , downloadInterval = 100;
 	  ;
 
 	this.getActualMenu = getActualMenu;
@@ -14,17 +16,28 @@ function menuManager (EventListener, api, moduleManager) {
 	});
 
 	function getActualMenu () {
-		console.log('actual menu', actualMenu);
 		return actualMenu;
 	}
 
 	function updateMenu () {
+		if(downloadTries > 5) {
+			if(downloadInterval > 10000) {
+				return;
+			}
+			downloadInterval *= 5;
+			downloadTries = 0;
+		}
 		if(actualModule) {
 			actualMenu = api.Menu.get({module: actualModule.slug});
+			that.launchEvent('menuUpdated');
+			downloadInterval = 100;
+			downloadTries = 0;
 		} else {
+			actualModule = moduleManager.getActiveModule();
+			downloadTries += 1;
 			actualMenu = {};
+			setTimeout(updateMenu, downloadInterval);
 		}
-		that.launchEvent('menuUpdated');
 	}
 }
 
