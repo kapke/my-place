@@ -1,1 +1,1 @@
-<h1>{{ClientConversions.preview|translate}}</h1>
+<h1>{{'ClientConversions.preview'|translate}}</h1>

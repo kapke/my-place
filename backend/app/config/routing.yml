@@ -2,12 +2,11 @@ kapke_my_place:
     resource: "@KapkeMyPlaceBundle/Resources/config/routing.yml"
     prefix:   /
 module_client_conversions:
-    resource: "@ClientConversionsModuleBundle/Resources/config/routing.yml"
+    resource: "@KapkeClientConversionsModuleBundle/Resources/config/routing.yml"
     prefix:   /client_conversions/
 module_client_data:
-    resource: "@ClientDataModuleBundle/Resources/config/routing.yml"
+    resource: "@KapkeClientDataModuleBundle/Resources/config/routing.yml"
     prefix:   /client_data/
 module_notes:
-    resource: "@NotesModuleBundle/Resources/config/routing.yml"
+    resource: "@KapkeNotesModuleBundle/Resources/config/routing.yml"
     prefix:   /notes/
-

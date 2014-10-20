@@ -19,11 +19,11 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new Kapke\Bundle\MyPlaceBundle\KapkeMyPlaceBundle(),
-            new Module\Kapke\ClientConversions\ClientConversionsModuleBundle(),
-            new Module\Kapke\ClientData\ClientDataModuleBundle(),
-            new Module\Kapke\Notes\NotesModuleBundle(),
-            new Provider\Kapke\Clients\ClientsProviderBundle(),
-            new Provider\Kapke\Notes\NotesProviderBundle()
+            new Kapke\Module\ClientConversions\KapkeClientConversionsModuleBundle(),
+            new Kapke\Module\ClientData\KapkeClientDataModuleBundle(),
+            new Kapke\Module\Notes\KapkeNotesModuleBundle(),
+            new Kapke\Provider\Clients\KapkeClientsProviderBundle(),
+            new Kapke\Provider\Notes\KapkeNotesProviderBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

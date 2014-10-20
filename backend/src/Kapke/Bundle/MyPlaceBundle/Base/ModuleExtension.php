@@ -8,29 +8,32 @@ use Symfony\Component\DependencyInjection\Loader;
 use Kapke\Bundle\MyPlaceBundle\DependencyInjection\Configuration;
 use Kapke\Bundle\MyPlaceBundle\DependencyInjection\KapkeMyPlaceExtension;
 
-abstract class ModuleExtension extends Extension {
-	private $dir;
+abstract class ModuleExtension extends Extension
+{
+    private $dir;
 
-	public function __construct () {
-		$reflectionClass = new \ReflectionClass($this);
-		$this->dir = dirname($reflectionClass->getFileName());
-	}
+    public function __construct()
+    {
+        $reflectionClass = new \ReflectionClass($this);
+        $this->dir = dirname($reflectionClass->getFileName());
+    }
 
-	/**
+    /**
      * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-    	$kapkeMyPlaceExtension = new KapkeMyPlaceExtension();
-    	$container->registerExtension($kapkeMyPlaceExtension);
+        $kapkeMyPlaceExtension = new KapkeMyPlaceExtension();
+        $container->registerExtension($kapkeMyPlaceExtension);
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         $this->loadModuleDefinition($container);
         $kapkeMyPlaceExtension->load($container->getExtensionConfig($kapkeMyPlaceExtension->getAlias()), $container);
     }
 
-    protected function loadModuleDefinition($container) {
-    	$loader = new Loader\YamlFileLoader($container, new FileLocator($this->dir.'/../Resources/config'));
+    protected function loadModuleDefinition($container)
+    {
+        $loader = new Loader\YamlFileLoader($container, new FileLocator($this->dir.'/../Resources/config'));
         $loader->load('module.yml');
     }
 }

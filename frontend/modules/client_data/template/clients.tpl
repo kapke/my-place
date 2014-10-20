@@ -1,5 +1,5 @@
 <section ng-controller="ClientData.clientsCtrl">
-	<section>
+	<section class="module-section">
 		<h2>{{'ClientData.clients'|translate}}</h2>
 		<table>
 			<thead>
@@ -19,21 +19,21 @@
 			</tbody>
 		</table>
 	</section>
-	<section>
-		<h2>{{'ClientData.addClient'|translate}}</h2>
-		<form ng-submit="addClient()">
-			<label>{{'ClientData.name'|translate}}: <input type="text" name="name" ng-model="newClient.name" /></label>
-			<label>{{'ClientData.surname'|translate}}: <input type="text" name="surname" ng-model="newClient.surname" /></label>
-			<input type="submit" value="{{'ClientData.addClient'|translate}}" />
-		</form>
-	</section>
-	<section ng-if="editing">
+	<section ng-if="editing" class="module-section">
 		<h2>{{'ClientData.editClient'|translate}}</h2>
 		<form ng-submit="approveChanges()">
 			<label>{{'ClientData.name'|translate}}: <input type="text" name="name" ng-model="editing.name" /></label>
 			<label>{{'ClientData.surname'|translate}}: <input type="text" name="surname" ng-model="editing.surname" /></label>
 			<button ng-click="cancelChanges()">{{'ClientData.cancel'|translate}}</button>
 			<input type="submit" value="{{'ClientData.approveChanges'|translate}}" />
+		</form>
+	</section>
+	<section class="module-section" ng-if="!editing">
+		<h2>{{'ClientData.addClient'|translate}}</h2>
+		<form ng-submit="addClient()">
+			<label>{{'ClientData.name'|translate}}: <input type="text" name="name" ng-model="newClient.name" required /></label>
+			<label>{{'ClientData.surname'|translate}}: <input type="text" name="surname" ng-model="newClient.surname" required /></label>
+			<input type="submit" value="{{'ClientData.addClient'|translate}}" />
 		</form>
 	</section>
 </section>

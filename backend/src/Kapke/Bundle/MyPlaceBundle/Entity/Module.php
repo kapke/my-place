@@ -7,18 +7,19 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="my_place__module")
  */
-class Module {
-	/**
+class Module
+{
+    /**
 	 * @ORM\Column(type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
-	private $id;
-	/**
+    private $id;
+    /**
 	 * @ORM\Column(type="string")
 	 * @var string
 	 */
-	private $name;
+    private $name;
 
     /**
      * @ORM\Column(type="string")
@@ -26,15 +27,16 @@ class Module {
      */
     private $slug;
 
-	public function __construct ($name, $slug) {
-		$this->name = $name;
+    public function __construct($name, $slug)
+    {
+        $this->name = $name;
         $this->slug = $slug;
-	}
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -44,7 +46,7 @@ class Module {
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Module
      */
     public function setName($name)
@@ -57,7 +59,7 @@ class Module {
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -67,7 +69,7 @@ class Module {
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string $slug
      * @return Module
      */
     public function setSlug($slug)
@@ -80,7 +82,7 @@ class Module {
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {

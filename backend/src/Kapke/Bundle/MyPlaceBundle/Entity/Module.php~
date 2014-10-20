@@ -2,28 +2,24 @@
 namespace Kapke\Bundle\MyPlaceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Kapke\Bundle\MyPlaceBundle\DependencyInjection\Serializer;
-use JsonSerializable;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="my_place__module")
  */
-class Module implements JsonSerializable {
-	use Serializer;
-
-	private $serializableProperties = [['name' => 'id'], ['name' => 'name']];
-	/**
+class Module
+{
+    /**
 	 * @ORM\Column(type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
-	private $id;
-	/**
+    private $id;
+    /**
 	 * @ORM\Column(type="string")
 	 * @var string
 	 */
-	private $name;
+    private $name;
 
     /**
      * @ORM\Column(type="string")
@@ -31,24 +27,16 @@ class Module implements JsonSerializable {
      */
     private $slug;
 
-	public function __construct ($name, $slug=null) {
-		$this->name = $name;
-        if(!$slug) {
-            $this->slug = $this->generateSlug($name);
-        } else {
-            $this->slug = $slug;
-        }
-	}
-
-    private function generateSlug ($name) {
-        $slug = iconv('UTF-8', 'ASCII//TRANSLIT', $name);
-        return $name;
+    public function __construct($name, $slug)
+    {
+        $this->name = $name;
+        $this->slug = $slug;
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -58,7 +46,7 @@ class Module implements JsonSerializable {
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Module
      */
     public function setName($name)
@@ -71,10 +59,33 @@ class Module implements JsonSerializable {
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param  string $slug
+     * @return Module
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

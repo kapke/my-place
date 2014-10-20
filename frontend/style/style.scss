@@ -1,0 +1,82 @@
+$moduleListWidth: 15em;
+$menuWidth: 15em;
+
+@import 'reset';
+
+body {
+	font-family: Ubuntu;
+	font-size: 12pt;
+}
+
+my-place-module-list {
+	width: $moduleListWidth - 2em;
+	position: fixed;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	border-left: 1px solid black;
+	padding: 1em;
+	ul {
+		li {
+			list-style-type: none;
+		}
+	} 
+}
+
+my-place-menu {
+	width: $menuWidth;
+	position: fixed;
+	top: 0;
+	right: $moduleListWidth;
+	bottom: 0;
+	border-left: 1px solid black;
+	padding: 1em;
+	ul {
+		li {
+			list-style-type: none;
+		}
+	} 
+}
+
+.my-place-content {
+	margin-top: 1em;
+	margin-right: $moduleListWidth + $menuWidth;
+	display: block;
+}
+
+.module-section {
+	display: inline-block;
+	vertical-align: top;
+	margin: 1em;
+	h1, h2, h3, h4, h5, h6 {
+		border-bottom: 1px solid black;
+		margin-bottom: 0.5em;
+	}
+}
+
+table {
+	border-collapse: collapse;
+	th {
+		border-bottom: 1px solid black;
+	}
+	td, th {
+		padding: 0.125em 0.25em;
+	}
+}
+
+form {
+	label {
+		display: block;
+	}
+	input, button, textarea {
+		margin: 0.25em;
+		padding: 0.25em;
+		font-family: Ubuntu;
+		font-size: 75%;
+	}
+	button, input[type="submit"] {
+		float: right;
+		border: 1px solid black;
+		background-color: white;
+	}
+}

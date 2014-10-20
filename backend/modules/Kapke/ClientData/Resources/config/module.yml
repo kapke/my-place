@@ -1,5 +1,0 @@
-kapke_my_place:
-    module:
-        name: ClientData
-        title: Client Data
-        vendor: Kapke

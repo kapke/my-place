@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: Ubuntu;
+  font-size: 12pt; }
+
+my-place-module-list {
+  width: 13em;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid black;
+  padding: 1em; }
+  my-place-module-list ul li {
+    list-style-type: none; }
+
+my-place-menu {
+  width: 15em;
+  position: fixed;
+  top: 0;
+  right: 15em;
+  bottom: 0;
+  border-left: 1px solid black;
+  padding: 1em; }
+  my-place-menu ul li {
+    list-style-type: none; }
+
+.my-place-content {
+  margin-top: 1em;
+  margin-right: 30em;
+  display: block; }
+
+.module-section {
+  display: inline-block;
+  vertical-align: top;
+  margin: 1em; }
+  .module-section h1, .module-section h2, .module-section h3, .module-section h4, .module-section h5, .module-section h6 {
+    border-bottom: 1px solid black;
+    margin-bottom: 0.5em; }
+
+table {
+  border-collapse: collapse; }
+  table th {
+    border-bottom: 1px solid black; }
+  table td, table th {
+    padding: 0.125em 0.25em; }
+
+form label {
+  display: block; }
+form input, form button, form textarea {
+  margin: 0.25em;
+  padding: 0.25em;
+  font-family: Ubuntu;
+  font-size: 75%; }
+form button, form input[type="submit"] {
+  float: right;
+  border: 1px solid black;
+  background-color: white; }

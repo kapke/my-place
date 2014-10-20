@@ -15,7 +15,8 @@ abstract class ProviderExtension extends Extension
 {
     private $dir;
 
-    public function __construct () {
+    public function __construct()
+    {
         $reflectionClass = new \ReflectionClass($this);
         $this->dir = dirname($reflectionClass->getFileName());
     }
@@ -33,11 +34,13 @@ abstract class ProviderExtension extends Extension
         $loader->load('services.yml');
     }
 
-    private function getConfigurationClass () {
+    private function getConfigurationClass()
+    {
         $Class = explode('\\', get_class($this));
         array_pop($Class);
         $Class[] = 'Configuration';
         $Class = implode('\\', $Class);
+
         return $Class;
     }
 }

@@ -24,9 +24,9 @@ class KapkeMyPlaceExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-        foreach($configs as $config) {
-            if(isset($config['module'])) {
-                $modules = $container->hasParameter('kapke_my_place.modules')?$container->getParameter('kapke_my_place.modules'):[];
+        foreach ($configs as $config) {
+            if (isset($config['module'])) {
+                $modules = $container->hasParameter('kapke_my_place.modules') ? $container->getParameter('kapke_my_place.modules') : [];
                 $modules[$config['module']['name']] = $config['module'];
                 $container->setParameter('kapke_my_place.modules', $modules);
             }

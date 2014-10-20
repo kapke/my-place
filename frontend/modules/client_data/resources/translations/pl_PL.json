@@ -7,4 +7,10 @@
   , "ClientData.cancel": "Anuluj"
   , "ClientData.name": "Imię"
   , "ClientData.surname": "Nazwisko"
+  , "ClientData.products": "Produkty"
+  , "ClientData.addProduct": "Dodaj produkt"
+  , "ClientData.vendor": "Dostawca"
+  , "ClientData.productName": "Nazwa produktu"
+  , "ClientData.addVendor": "Dodaj dostawcę"
+  , "ClientData.vendorName": "Nazwa dostawcy"
 }
