@@ -7,6 +7,10 @@ function productService ($q, EventListener, Product, Vendor) {
 	this.getEmptyProductData = getEmptyProductData;
 	this.saveProduct = saveProduct;
 	this.getProducts = getProducts;
+	this.createVendor = createVendor;
+	this.getEmptyVendorData = getEmptyVendorData;
+	this.saveVendor = saveVendor;
+	this.getVendors = getVendors;
 
 	function createProduct (vendor, name) {
 		var product = new Product();
@@ -46,6 +50,30 @@ function productService ($q, EventListener, Product, Vendor) {
 				deferred.resolve(products);
 			}
 	    });
+		return deferred.promise;
+	}
+
+	function createVendor (name) {
+		var vendor = new Vendor();
+		vendor.name = name;
+		return vendor;
+	}
+
+	function getEmptyVendorData () {
+		return '';
+	}
+
+	function saveVendor (vendor) {
+		return vendor.$save(function () {
+			that.launchEvent('vendorSaved', [vendor]);
+		});
+	}
+
+	function getVendors () {
+		var deferred = $q.defer();
+		Vendor.query(function (vendors) {
+			deferred.resolve(vendors);
+		});
 		return deferred.promise;
 	}
 }

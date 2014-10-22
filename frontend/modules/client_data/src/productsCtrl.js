@@ -14,6 +14,10 @@ function productsCtrl ($scope, productService, Vendor) {
 		$scope.newProduct= productService.getEmptyProductData();
 		loadProducts();
 	});
+	productService.addEventListener('vendorSaved', function () {
+		$scope.newVendor = productService.getEmptyVendorData();
+		loadVendors();
+	})
 
 	loadVendors();
 	loadProducts();
@@ -28,12 +32,9 @@ function productsCtrl ($scope, productService, Vendor) {
 	}
 
 	function addVendor () {
-		var vendor = new Vendor();
-		vendor.name = $scope.newVendor;
-		vendor.$save(function () {
-			$scope.newVendor = '';
-			loadVendors();
-		});
+		productService.saveVendor(
+			productService.createVendor($scope.newVendor)
+		);
 	}
 
 	function loadProducts () {
@@ -43,10 +44,12 @@ function productsCtrl ($scope, productService, Vendor) {
 	}
 
 	function loadVendors () {
-		$scope.vendors = Vendor.query();
+		productService.getVendors().then(function (vendors) {
+			$scope.vendors = vendors;
+		});
 	}
 }
-productsCtrl.$inject = ['$scope', 'ClientData.productService', 'ClientData.Vendor'];
+productsCtrl.$inject = ['$scope', 'ClientData.productService'];
 
 angular.module('ClientData')
 .controller('ClientData.productsCtrl', productsCtrl)
