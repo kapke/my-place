@@ -1,60 +1,55 @@
-function productsCtrl ($scope, Product, Vendor) {
+function productsCtrl ($scope, productService, Vendor) {
 	$scope.products = {};
 	$scope.vendors = [];
 	$scope.newVendor = '';
 	$scope.newProduct = {
 		vendor: ''
 	  , name: ''
-	}
+	};
 
 	$scope.addProduct = addProduct;
 	$scope.addVendor = addVendor;
+
+	productService.addEventListener('productSaved', function () {
+		$scope.newProduct= productService.getEmptyProductData();
+		loadProducts();
+	});
+	productService.addEventListener('vendorSaved', function () {
+		$scope.newVendor = productService.getEmptyVendorData();
+		loadVendors();
+	})
 
 	loadVendors();
 	loadProducts();
 
 	function addProduct () {
-		var product = new Product();
-		product.vendor = $scope.newProduct.vendor;
-		product.name = $scope.newProduct.name;
-		product.$save(function () {
-			$scope.newProduct = {
-				vendor: ''
-			  , name: ''
-			}
-			loadProducts();
-		});
+		productService.saveProduct(
+			productService.createProduct(
+				$scope.newProduct.vendor,
+				$scope.newProduct.name
+			)
+		);
 	}
 
 	function addVendor () {
-		var vendor = new Vendor();
-		vendor.name = $scope.newVendor;
-		vendor.$save(function () {
-			$scope.newVendor = '';
-			loadVendors();
-		});
+		productService.saveVendor(
+			productService.createVendor($scope.newVendor)
+		);
 	}
 
 	function loadProducts () {
-		var products = {};
-		Product.query(function (receivedProducts) {
-			receivedProducts.map(function (product) {
-				if (product.vendor) {
-					if (!products[product.vendor.name]) {
-						products[product.vendor.name] = [];
-					}
-					products[product.vendor.name].push(product);
-				}
-			});
+		productService.getProducts(true).then(function (products) {
 			$scope.products = products;
 		});
 	}
 
 	function loadVendors () {
-		$scope.vendors = Vendor.query();
+		productService.getVendors().then(function (vendors) {
+			$scope.vendors = vendors;
+		});
 	}
 }
-productsCtrl.$inject = ['$scope', 'ClientData.Product', 'ClientData.Vendor'];
+productsCtrl.$inject = ['$scope', 'ClientData.productService'];
 
 angular.module('ClientData')
 .controller('ClientData.productsCtrl', productsCtrl)
