@@ -1,29 +1,30 @@
-function productsCtrl ($scope, Product, Vendor) {
+function productsCtrl ($scope, productService, Vendor) {
 	$scope.products = {};
 	$scope.vendors = [];
 	$scope.newVendor = '';
 	$scope.newProduct = {
 		vendor: ''
 	  , name: ''
-	}
+	};
 
 	$scope.addProduct = addProduct;
 	$scope.addVendor = addVendor;
+
+	productService.addEventListener('productSaved', function () {
+		$scope.newProduct= productService.getEmptyProductData();
+		loadProducts();
+	});
 
 	loadVendors();
 	loadProducts();
 
 	function addProduct () {
-		var product = new Product();
-		product.vendor = $scope.newProduct.vendor;
-		product.name = $scope.newProduct.name;
-		product.$save(function () {
-			$scope.newProduct = {
-				vendor: ''
-			  , name: ''
-			}
-			loadProducts();
-		});
+		productService.saveProduct(
+			productService.createProduct(
+				$scope.newProduct.vendor,
+				$scope.newProduct.name
+			)
+		);
 	}
 
 	function addVendor () {
@@ -36,16 +37,7 @@ function productsCtrl ($scope, Product, Vendor) {
 	}
 
 	function loadProducts () {
-		var products = {};
-		Product.query(function (receivedProducts) {
-			receivedProducts.map(function (product) {
-				if (product.vendor) {
-					if (!products[product.vendor.name]) {
-						products[product.vendor.name] = [];
-					}
-					products[product.vendor.name].push(product);
-				}
-			});
+		productService.getProducts(true).then(function (products) {
 			$scope.products = products;
 		});
 	}
@@ -54,7 +46,7 @@ function productsCtrl ($scope, Product, Vendor) {
 		$scope.vendors = Vendor.query();
 	}
 }
-productsCtrl.$inject = ['$scope', 'ClientData.Product', 'ClientData.Vendor'];
+productsCtrl.$inject = ['$scope', 'ClientData.productService', 'ClientData.Vendor'];
 
 angular.module('ClientData')
 .controller('ClientData.productsCtrl', productsCtrl)
