@@ -1,7 +1,12 @@
 <section ng-controller="ClientData.productsCtrl">
 	<section class="module-section">
 		<h2>{{'ClientData.products'|translate}}</h2>
-		<div>{{products}}</div>
+		<div>
+			<div ng-repeat="vendor in vendors">
+				<h3>{{vendor.name}}</h3>
+				<div ng-repeat="product in products[vendor.name]">{{product.name}}</div>
+			</div>
+		</div>
 	</section>
 	<section class="module-section">
 		<h2>{{'ClientData.addProduct'|translate}}</h2>
