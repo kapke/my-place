@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Kapke\Provider\Clients\Entity\Client;
+use Kapke\Provider\Clients\Entity\Product;
 
 class ClientsController extends FOSRestController
 {
@@ -47,6 +48,11 @@ class ClientsController extends FOSRestController
         $client = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Client')->find($id);
         $client->setName($request->request->get('name'));
         $client->setSurname($request->request->get('surname'));
+        $addedProduct = $request->request->get('addedProduct');
+        if ($addedProduct) {
+            $product = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Product')->find($addedProduct['id']);
+            $client->addProduct($product);
+        }
         $em->persist($client);
         $em->flush();
         $view = $this->view($client);

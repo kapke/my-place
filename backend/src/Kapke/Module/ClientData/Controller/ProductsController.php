@@ -10,20 +10,20 @@ use Kapke\Provider\Clients\Entity\Vendor;
 
 class ProductsController extends FOSRestController
 {
-	public function getProductsAction()
-	{
-		$products = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Product')->findAll();
+    public function getProductsAction()
+    {
+        $products = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Product')->findAll();
         $view = $this->view($products);
 
         return $this->handleView($view);
-	}
+    }
 
-	public function postProductsAction(Request $request)
+    public function postProductsAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $vendorRepo = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Vendor');
         $vendor = $vendorRepo->findOneBy(['name' => $request->request->get('vendor')]);
-        if(!$vendor) {
+        if (!$vendor) {
             $vendor = new Vendor($request->request->get('vendor'));
             $em->persist($vendor);
         }

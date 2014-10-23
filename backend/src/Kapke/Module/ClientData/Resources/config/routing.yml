@@ -9,4 +9,3 @@ client_data.products:
 client_data.vendors:
     type: rest
     resource: Kapke\Module\ClientData\Controller\VendorsController
-

@@ -12,10 +12,14 @@ function productService ($q, EventListener, Product, Vendor) {
 	this.saveVendor = saveVendor;
 	this.getVendors = getVendors;
 
-	function createProduct (vendor, name) {
+	function createProduct (vendor, name, id) {
 		var product = new Product();
 		product.vendor = vendor;
 		product.name = name;
+		if(id) {
+			product.id = id;
+		}
+		product.fullName = product.getFullName();
 		return product;
 	}
 
@@ -35,6 +39,9 @@ function productService ($q, EventListener, Product, Vendor) {
 	function getProducts (grouped) {
 		var deferred = $q.defer();
 		Product.query(function (products) {
+			products.forEach(function (product) {
+				product.fullName = product.getFullName();
+			});
 	  		if(!!grouped) {
 	  			var output = {};
 	  			products.map(function (product) {
