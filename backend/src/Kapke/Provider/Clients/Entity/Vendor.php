@@ -9,32 +9,32 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Vendor
 {
-	/**
+    /**
 	 * @ORM\Column(type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
-	
-	private $id;
-	/**
+
+    private $id;
+    /**
 	 * @ORM\Column(type="string")
 	 */
-	private $name;
+    private $name;
 
-	public function __construct($name)
-	{
-		$this->name = $name;
-	}
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
 
-	public function __toString()
-	{
-		return $this->name;
-	}
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -44,7 +44,7 @@ class Vendor
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Vendor
      */
     public function setName($name)
@@ -57,7 +57,7 @@ class Vendor
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

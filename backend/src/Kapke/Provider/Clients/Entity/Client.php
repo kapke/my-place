@@ -28,7 +28,7 @@ class Client
     private $surname;
     /**
      * @ORM\ManyToMany(targetEntity="Product")
-     * @ORM\JoinTable(name="clients_provider__clients_products", 
+     * @ORM\JoinTable(name="clients_provider__clients_products",
      *    joinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="id")},
      *    inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
      *    )
@@ -55,7 +55,7 @@ class Client
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -65,7 +65,7 @@ class Client
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -75,7 +75,7 @@ class Client
     /**
      * Get surname
      *
-     * @return string 
+     * @return string
      */
     public function getSurname()
     {
@@ -85,7 +85,7 @@ class Client
     /**
      * Add products
      *
-     * @param \Kapke\Provider\Clients\Entity\Product $products
+     * @param  \Kapke\Provider\Clients\Entity\Product $products
      * @return Client
      */
     public function addProduct(\Kapke\Provider\Clients\Entity\Product $products)
@@ -108,7 +108,7 @@ class Client
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {

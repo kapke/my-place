@@ -37,7 +37,7 @@ class Note
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -47,7 +47,7 @@ class Note
     /**
      * Set title
      *
-     * @param string $title
+     * @param  string $title
      * @return Note
      */
     public function setTitle($title)
@@ -60,7 +60,7 @@ class Note
     /**
      * Get title
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -70,7 +70,7 @@ class Note
     /**
      * Set description
      *
-     * @param string $description
+     * @param  string $description
      * @return Note
      */
     public function setDescription($description)
@@ -83,7 +83,7 @@ class Note
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -93,7 +93,7 @@ class Note
     /**
      * Set content
      *
-     * @param string $content
+     * @param  string $content
      * @return Note
      */
     public function setContent($content)
@@ -106,7 +106,7 @@ class Note
     /**
      * Get content
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {

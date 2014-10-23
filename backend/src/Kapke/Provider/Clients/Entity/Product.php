@@ -9,24 +9,23 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
-	/**
+    /**
 	 * @ORM\Column(type="integer")
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
-	private $id;
-	/**
+    private $id;
+    /**
 	 * @ORM\ManyToOne(targetEntity="Vendor")
      * @ORM\JoinColumn(name="vendor_id", referencedColumnName="id")
 	 */
-	private $vendor;
-	/**
+    private $vendor;
+    /**
 	 * @ORM\Column(type="string")
 	 */
-	private $name;
+    private $name;
 
-	private $clients;
-
+    private $clients;
 
     public function __construct(Vendor $vendor, $name)
     {
@@ -37,7 +36,7 @@ class Product
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -47,7 +46,7 @@ class Product
     /**
      * Set vendor
      *
-     * @param string $vendor
+     * @param  string  $vendor
      * @return Product
      */
     public function setVendor(Vendor $vendor)
@@ -60,7 +59,7 @@ class Product
     /**
      * Get vendor
      *
-     * @return string 
+     * @return string
      */
     public function getVendor()
     {
@@ -70,7 +69,7 @@ class Product
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string  $name
      * @return Product
      */
     public function setName($name)
@@ -83,7 +82,7 @@ class Product
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

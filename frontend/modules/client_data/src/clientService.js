@@ -1,4 +1,4 @@
-function clientService (EventListener, Client) {
+function clientService ($q, EventListener, Client, productService) {
 	EventListener.call(this);
 
 	var that = this;
@@ -36,7 +36,16 @@ function clientService (EventListener, Client) {
 	}
 
 	function getClients () {
-		return Client.query();
+		var deferred = $q.defer();
+		Client.query(function (clients) {
+			clients.forEach(function (client) {
+				client.products = client.products.map(function (product) {
+					return productService.createProduct(product.vendor, product.name, product.id);
+				});
+			});
+			deferred.resolve(clients);
+		});
+		return deferred.promise;
 	}
 
 	function getEmptyClientData () {
@@ -46,7 +55,7 @@ function clientService (EventListener, Client) {
 		};
 	}
 }
-clientService.$inject = ['MyPlace.Utils.EventListener', 'ClientData.Client'];
+clientService.$inject = ['$q', 'MyPlace.Utils.EventListener', 'ClientData.Client', 'ClientData.productService'];
 
 angular.module('ClientData')
 .service('ClientData.clientService', clientService)

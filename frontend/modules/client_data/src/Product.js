@@ -1,5 +1,5 @@
 function productFactory (api) {
-	return api.getResource({
+	var Product = api.getResource({
 		type: api.BACKEND
 	  , module: 'client_data'
 	  , resource: 'products/:id'
@@ -13,6 +13,15 @@ function productFactory (api) {
 	  		}
 	    }
 	});
+	Product.prototype.getFullName = function () {
+		var vendorName = '';
+		if(this.vendor) {
+			vendorName = this.vendor.name;
+		}
+		return vendorName+' '+this.name;
+	}
+
+	return Product;
 }
 productFactory.$inject = ['MyPlace.apiService'];
 
