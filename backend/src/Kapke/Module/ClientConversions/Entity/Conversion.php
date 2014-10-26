@@ -34,6 +34,11 @@ class Conversion
      * @var \DateTime
      */
     private $timestamp;
+    /**
+     * @ORM\Column(type="string", options={"default":""})
+     * @var string
+     */
+    private $note;
 
     public function __construct()
     {
@@ -117,5 +122,28 @@ class Conversion
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     * @return Conversion
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string 
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 }
