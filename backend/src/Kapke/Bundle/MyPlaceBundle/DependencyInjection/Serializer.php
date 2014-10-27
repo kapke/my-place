@@ -10,6 +10,7 @@ trait Serializer
             $name = $property['name'];
             $value = null;
             if (isset($property['value'])) {
+                //launches property serializing function
                 if (is_callable($property['value'])) {
                     $value = call_user_func($property['value']);
                 } else {
@@ -21,6 +22,18 @@ trait Serializer
             $simple = isset($property['simple']) ? $property['simple'] : true;
             if (!$simple) {
                 $value = $value->toArray();
+            }
+            //serializes array
+            if (is_array($value)) {
+                foreach ($value as $key => $subvalue) {
+                    if (method_exists($subvalue, 'jsonSerialize')) {
+                        $value[$key] = $subvalue->jsonSerialize();
+                    }
+                }   
+            }
+            //serializes subobjects
+            if (method_exists($value, 'jsonSerialize')) {
+                $value = $value->jsonSerialize();
             }
             $output[$name] = $value;
         }
