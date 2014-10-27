@@ -23,7 +23,7 @@ class ModulesController extends FOSRestController
     {
         $modules = array_map(function ($module) {
             return $module->jsonSerialize();
-        }, array_values($this->modulesManager->getModules()));
+        }, array_values($this->modulesManager->getModules(true)));
         $view = $this->view($modules);
 
         return $this->handleview($view);

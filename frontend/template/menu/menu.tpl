@@ -1,6 +1,11 @@
 <h3>Menu</h3>
 <ul>
 	<li ng-repeat="item in menu.items">
-		<a ui-sref="module({view: item.view})" href="#">{{item.title|translate}}</a>
+		<a ui-sref="module({module: menu.module, view: item.view})" href="#">{{item.title|translate}}</a>
+	</li>
+</ul>
+<ul ng-repeat="extension in menu.extensions">
+	<li ng-repeat="item in extension.items">
+		<a ui-sref="module({module: extension.module, view: item.view})" href="#">{{item.title|translate}}</a>
 	</li>
 </ul>

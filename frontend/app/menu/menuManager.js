@@ -28,7 +28,24 @@ function menuManager (EventListener, api, moduleManager) {
 			downloadTries = 0;
 		}
 		if(actualModule) {
+			if(actualModule.parent) {
+				actualModule = actualModule.parent;
+			}
 			actualMenu = api.Menu.get({module: actualModule.slug});
+			(function (module) {
+				actualMenu.$promise.then(function (actualMenu) {
+					actualMenu.module = module.slug;
+					module.children.forEach(function (submodule) {
+						if(!actualMenu.extensions) {
+							actualMenu.extensions = [];
+						}
+						var submenu = api.Menu.get({module: submodule.slug}, function (submenu) {
+							submenu.module = submodule.slug;	
+						});
+						actualMenu.extensions.push(submenu);
+					});
+				});
+			})(actualModule);
 			that.launchEvent('menuUpdated');
 			downloadInterval = 100;
 			downloadTries = 0;

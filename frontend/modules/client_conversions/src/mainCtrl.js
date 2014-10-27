@@ -1,8 +1,13 @@
+(function () {
+'use strict';
 function mainCtrl ($scope, clientService, Conversion) {
 	$scope.clients = [];
 	$scope.conversions = [];
 	$scope.actualClient = false;
 	$scope.actualProduct = false;
+	$scope.newConversion = {
+		note: ''
+	};
 
 	$scope.selectClient = selectClient;
 	$scope.selectProduct = selectProduct;
@@ -35,9 +40,17 @@ function mainCtrl ($scope, clientService, Conversion) {
 		var conversion = new Conversion();
 		conversion.client = $scope.actualClient;
 		conversion.product = $scope.actualProduct;
+		conversion.note = $scope.newConversion.note;
 		conversion.$save(function () {
 			loadConversions();
+			emptyNewConversion();
 		});
+	}
+
+	function emptyNewConversion () {
+		$scope.newConversion = {
+			note: ''
+		};
 	}
 }
 
@@ -46,3 +59,4 @@ mainCtrl.$inject = ['$scope', 'ClientData.clientService', 'ClientConversions.Con
 angular.module('ClientConversions')
 .controller('ClientConversions.mainCtrl', mainCtrl)
 ;
+})();

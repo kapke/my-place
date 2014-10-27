@@ -33,9 +33,11 @@ class ConversionsController extends FOSRestController
         $em = $this->getDoctrine()->getEntityManager();
         $client = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Client')->find($clientId);
         $product = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\product')->find($productId);
+        $note = $request->request->get('note');
         $conversion = new Conversion();
         $conversion->setClient($client);
         $conversion->setProduct($product);
+        $conversion->setNote($note);
         $em->persist($conversion);
         $em->flush();
         $response = new Response();

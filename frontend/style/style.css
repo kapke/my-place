@@ -15,7 +15,9 @@ my-place-module-list {
   border-left: 1px solid black;
   padding: 1em; }
   my-place-module-list ul li {
-    list-style-type: none; }
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 1em; }
 
 my-place-menu {
   width: 15em;
@@ -26,7 +28,9 @@ my-place-menu {
   border-left: 1px solid black;
   padding: 1em; }
   my-place-menu ul li {
-    list-style-type: none; }
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 1em; }
 
 .my-place-content {
   margin-top: 1em;
@@ -59,3 +63,7 @@ form button, form input[type="submit"] {
   float: right;
   border: 1px solid black;
   background-color: white; }
+
+ul li, ol li {
+  margin-left: 2em;
+  padding-right: 1em; }
