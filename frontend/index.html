@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="MyPlace">
 <head>
 	<meta name="charset" value="UTF-8" />
 	<title>My Place</title>
@@ -35,9 +35,9 @@
 	<script src="frontend/modules/notes/src/Note.js"></script>
 	<script src="frontend/modules/notes/src/mainCtrl.js"></script>
 </head>
-<body ng-app="MyPlace">
+<body ng-controller="MyPlace.mainCtrl">
 	<my-place-module-list ng-controller="MyPlace.Module.moduleListCtrl"></my-place-module-list>
-	<my-place-menu ng-controller="MyPlace.Menu.menuCtrl"></my-place-menu>
+	<my-place-menu ng-show="menuVisible"></my-place-menu>
 	<ui-view ng-controller="MyPlace.Module.moduleCtrl" class="my-place-content"></ui-view>
 </body>
 </html>

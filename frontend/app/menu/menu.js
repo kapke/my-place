@@ -1,9 +1,8 @@
 'use strict';
-function menuCtrl ($scope, menuManager) {
-
+function menuCtrl () {
 }
 
-menuCtrl.$inject = ['$scope', 'MyPlace.Menu.menuManager'];
+menuCtrl.$inject = [];
 
 function menuDirective (menuManager) {
 	return {

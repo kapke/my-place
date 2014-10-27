@@ -31,7 +31,12 @@ function menuManager (EventListener, api, moduleManager) {
 			if(actualModule.parent) {
 				actualModule = actualModule.parent;
 			}
-			actualMenu = api.Menu.get({module: actualModule.slug});
+			actualMenu = api.Menu.get({module: actualModule.slug}, function () {
+				calculateVisibility(actualMenu);
+				that.launchEvent('menuUpdated');
+			});
+			calculateVisibility(actualMenu);
+			that.launchEvent('menuUpdated');
 			(function (module) {
 				actualMenu.$promise.then(function (actualMenu) {
 					actualMenu.module = module.slug;
@@ -43,10 +48,11 @@ function menuManager (EventListener, api, moduleManager) {
 							submenu.module = submodule.slug;	
 						});
 						actualMenu.extensions.push(submenu);
+						calculateVisibility(actualMenu);
+						that.launchEvent('menuUpdated');
 					});
 				});
 			})(actualModule);
-			that.launchEvent('menuUpdated');
 			downloadInterval = 100;
 			downloadTries = 0;
 		} else {
@@ -55,6 +61,24 @@ function menuManager (EventListener, api, moduleManager) {
 			actualMenu = {};
 			setTimeout(updateMenu, downloadInterval);
 		}
+	}
+
+	function calculateVisibility (menu) {
+		var visible = false
+		  , itemsCount = 0
+		  ;
+
+		if(menu.items) {
+			itemsCount = menu.items.length;
+			visible = (itemsCount>0);
+			if(!visible && menu.extensions) {
+				menu.extensions.forEach(function (extension) {
+					itemsCount += extension.items.length;
+				});
+				visible = (itemsCount>0);
+			}
+		} 
+		menu.visible = visible;
 	}
 }
 
