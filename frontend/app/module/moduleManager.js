@@ -3,7 +3,7 @@ function moduleManager ($state, api, EventListener) {
 	EventListener.call(this);
 
 	(function () {
-		var modules = api.Module.query(function () {
+		var modules = api.Module.query(function (modules) {
 			modules.forEach(function (module) {
 				registerModule(module);
 			});
@@ -30,8 +30,12 @@ function moduleManager ($state, api, EventListener) {
 	function registerModule (module) {
 		modules.push(module);
 		modulesBySlug[module.slug] = module;
+		module.children.forEach(function (submodule) {
+			submodule.parent = module;
+			modulesBySlug[submodule.slug] = submodule;
+		});
 		that.launchEvent('moduleListChanged');
-		that.launchEvent('moduleAdded', [module.slug]);
+		that.launchEvent('moduleAdded', [module]);
 	}
 
 	function setActiveModuleAndView (module, view) {

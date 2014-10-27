@@ -1,8 +1,8 @@
 {
 	"items": [
 		{
-			"title": "ClientConversions.preview",
-			"view": "preview"
+			"title": "ClientConversions.conversions",
+			"view": "main"
 		}
 	]
 }

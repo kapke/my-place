@@ -1,3 +1,5 @@
+(function () {
+'use strict';
 function mainCtrl ($scope, clientService, Conversion) {
 	$scope.clients = [];
 	$scope.conversions = [];
@@ -57,3 +59,4 @@ mainCtrl.$inject = ['$scope', 'ClientData.clientService', 'ClientConversions.Con
 angular.module('ClientConversions')
 .controller('ClientConversions.mainCtrl', mainCtrl)
 ;
+})();

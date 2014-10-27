@@ -61,17 +61,20 @@ function translationServiceProvider () {
 	this.registerModule = registerModule;
 
 	this.$get = function ($injector, moduleManager) {
-		moduleManager.addEventListener('moduleAdded', function (moduleName) {
-			moduleRegisterer(moduleName);
+		moduleManager.addEventListener('moduleAdded', function (module) {
+			moduleRegister(module.slug);
+			module.children.forEach(function (submodule) {
+				moduleRegister(submodule.slug);
+			});
 		});
 
 		return {
-			registerModule: moduleRegisterer
+			registerModule: moduleRegister
 		  ,	getModules: getModules
 		  , getModule: getModule
 		}
 
-		function moduleRegisterer (module, resolvingFunction) {
+		function moduleRegister (module, resolvingFunction) {
 			$translate = $injector.get('$translate');
 			registerModule(module, resolvingFunction);
 			$translate.refresh();

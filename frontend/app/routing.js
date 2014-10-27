@@ -5,13 +5,7 @@ angular.module('MyPlace')
 	.state('module', {
 		  url: '/:module/:view'
 		, templateUrl: 'frontend/template/module/moduleView.tpl'
-		// , controller: 'MyPlace.Module.moduleCtrl'
 	})
-	// .state('module.view', {
-	// 	  url: '/:view'
-	// 	, templateUrl: 'frontend/template/module/moduleView.tpl'
-	// 	, controller: 'MyPlace.Module.moduleCtrl'
-	// })
 	;
 })
 ;
