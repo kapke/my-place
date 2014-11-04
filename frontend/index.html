@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="MyPlace">
 <head>
 	<meta name="charset" value="UTF-8" />
 	<title>My Place</title>
 	<link rel="stylesheet" href="frontend/style/style.css" />
 	<script src="frontend/bower_components/angular/angular.js"></script>
+	<script src="frontend/bower_components/angular-animate/angular-animate.js"></script>
 	<script src="frontend/bower_components/angular-resource/angular-resource.js"></script>
 	<script src="frontend/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="frontend/bower_components/angular-translate/angular-translate.js"></script>
@@ -15,6 +16,9 @@
 	<script src="frontend/app/utils/utils.js"></script>
 	<script src="frontend/app/utils/EventListener.js"></script>
 	<script src="frontend/app/translate/translate.js"></script>
+	<script src="frontend/app/translate/translationConfig.js"></script>
+	<script src="frontend/app/translate/translationLoaderFactory.js"></script>
+	<script src="frontend/app/translate/translationService.js"></script>
 	<script src="frontend/app/menu/menu.js"></script>
 	<script src="frontend/app/menu/menuManager.js"></script>
 	<script src="frontend/app/module/module.js"></script>
@@ -35,9 +39,9 @@
 	<script src="frontend/modules/notes/src/Note.js"></script>
 	<script src="frontend/modules/notes/src/mainCtrl.js"></script>
 </head>
-<body ng-app="MyPlace">
+<body ng-controller="MyPlace.mainCtrl">
 	<my-place-module-list ng-controller="MyPlace.Module.moduleListCtrl"></my-place-module-list>
-	<my-place-menu ng-controller="MyPlace.Menu.menuCtrl"></my-place-menu>
-	<ui-view ng-controller="MyPlace.Module.moduleCtrl" class="my-place-content"></ui-view>
+	<my-place-menu ng-hide="menuHidden" class="ng-hide"></my-place-menu>
+	<ui-view ng-controller="MyPlace.Module.moduleCtrl" class="my-place-content" ng-class="{menu: menuVisible, no_menu: menuHidden}"></ui-view>
 </body>
 </html>

@@ -6,8 +6,4 @@ use Kapke\Provider\Clients\DependencyInjection\ClientsProviderExtension;
 
 class KapkeClientsProviderBundle extends Bundle
 {
-    // public function getContainerExtension()
-    // {
-    //     return new ClientsProviderExtension();
-    // }
 }
