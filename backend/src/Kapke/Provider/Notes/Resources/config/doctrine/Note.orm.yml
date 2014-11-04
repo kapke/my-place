@@ -1,0 +1,14 @@
+Kapke\Provider\Notes\Entity\Note:
+    type: entity
+    table: notes_provider__note
+    id:
+        id:
+            type: integer
+            generator: {strategy: AUTO}
+    fields:
+        title:
+            type: string
+        description:
+            type: string
+        content:
+            type: string
