@@ -8,7 +8,9 @@ function menuDirective (menuManager) {
 	return {
 		restrict: 'E',
 		controller: function ($scope) {
-			$scope.menu = [];
+			$scope.menu = {
+				visible: false
+			};
 			menuManager.addEventListener('menuUpdated', function () {
 				$scope.menu = menuManager.getActualMenu();
 			});

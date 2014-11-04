@@ -4,19 +4,32 @@ function menuManager (EventListener, api, moduleManager) {
 	var that = this
 	  , actualMenu = {}
 	  , actualModule = null
+	  , actualModuleFamily = []
 	  , downloadTries = 0
 	  , downloadInterval = 100;
 	  ;
 
 	this.getActualMenu = getActualMenu;
 
-	moduleManager.addEventListener('activeModuleChanged', function () {
-		actualModule = moduleManager.getActiveModule();
-		updateMenu();
-	});
+	moduleManager.addEventListener('moduleListChanged', tryUpdate);
+	moduleManager.addEventListener('activeModuleChanged', tryUpdate);
 
 	function getActualMenu () {
 		return actualMenu;
+	}
+
+	function tryUpdate () {
+		actualModule = moduleManager.getActiveModule();
+		if(actualModule) {
+			var isModuleinFamily = (actualModuleFamily.indexOf(actualModule.slug) > -1);
+			if(!isModuleinFamily) {
+				actualModuleFamily = moduleManager.getModuleFamily(actualModule).map(function (module) {
+					return module.slug;
+				});
+				updateMenu();		
+			}
+			
+		}
 	}
 
 	function updateMenu () {
@@ -56,10 +69,10 @@ function menuManager (EventListener, api, moduleManager) {
 			downloadInterval = 100;
 			downloadTries = 0;
 		} else {
-			actualModule = moduleManager.getActiveModule();
-			downloadTries += 1;
+			// actualModule = moduleManager.getActiveModule();
+			// downloadTries += 1;
 			actualMenu = {};
-			setTimeout(updateMenu, downloadInterval);
+			// setTimeout(updateMenu, downloadInterval);
 		}
 	}
 
