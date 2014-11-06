@@ -2,7 +2,6 @@
 namespace Kapke\Module\Notes\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-// use FOS\RestBundle\Controller\FOSRestController;
 
 class NotesController 
 {
