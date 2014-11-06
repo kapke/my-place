@@ -35,5 +35,6 @@ abstract class ModuleExtension extends Extension
     {
         $loader = new Loader\YamlFileLoader($container, new FileLocator($this->dir.'/../Resources/config'));
         $loader->load('module.yml');
+        $loader->load('services.yml');
     }
 }
