@@ -2,14 +2,13 @@
 namespace Kapke\Module\Notes\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\FOSRestController;
+// use FOS\RestBundle\Controller\FOSRestController;
 
-class NotesController extends FOSRestController
+class NotesController 
 {
     private $crudController;
 
-    public function __construct($crudControllerFactory, $doctrine)
+    public function __construct($crudControllerFactory)
     {
         $entity = 'Kapke\\Provider\\Notes\\Entity\\Note';
         $this->crudController = $crudControllerFactory->get($entity);

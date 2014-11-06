@@ -3,4 +3,4 @@ parameters:
 services:
     kapke_notes_module.notes_controller:
         class: Kapke\Module\Notes\Controller\NotesController
-        arguments: [@kapke_my_place.crud_controller_factory, @doctrine]
+        arguments: [@kapke_my_place.crud_controller_factory]
