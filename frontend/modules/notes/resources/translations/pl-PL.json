@@ -5,4 +5,5 @@
   , "title": "Tytuł"
   , "description": "Skrót"
   , "content": "Treść"
+  , "delete": "Usuń"
 }

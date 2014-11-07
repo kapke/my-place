@@ -12,14 +12,5 @@
 			<input type="submit" value="{{'Notes.addNote'|translate}}" />
 		</form>	
 	</div>
-	<note-view ng-repeat="note in notes" note="note" />
+	<note-view ng-repeat="note in notes | orderBy:'id':true" note="note" />
 </section>
-
-<!-- <section ng-controller="Notes.mainCtrl">
-	<section class="module-section">
-		<h2>{{'Notes'|translate}}</h2>
-	</section>
-	<section class="module-section">
-		<h2>{{'Notes.newNote'|translate}}</h2>	
-	</section>
-</section> -->

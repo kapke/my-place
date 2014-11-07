@@ -6,6 +6,10 @@ function mainCtrl ($scope, Note) {
 
 	$scope.addNote = addNote;
 
+	$scope.$on('Notes.noteDeleted', function () {
+		loadNotes();
+	});
+
 	loadNotes();
 	emptyNewNote();
 
