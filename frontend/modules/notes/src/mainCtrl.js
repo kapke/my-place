@@ -5,10 +5,13 @@ function mainCtrl ($scope, Note) {
 	$scope.newNote = {};
 
 	$scope.addNote = addNote;
+	$scope.cancelEdits = cancelEdits;
 
 	$scope.$on('Notes.noteDeleted', function () {
 		loadNotes();
 	});
+
+	$scope.$on('Notes.noteEdit', cancelEdits);
 
 	loadNotes();
 	emptyNewNote();
@@ -36,6 +39,10 @@ function mainCtrl ($scope, Note) {
 		  , description: ''
 		  , content: ''
 		};
+	}
+
+	function cancelEdits () {
+		$scope.$broadcast('Notes.cancelEdit');
 	}
 }
 mainCtrl.$inject = ['$scope', 'Notes.Note'];

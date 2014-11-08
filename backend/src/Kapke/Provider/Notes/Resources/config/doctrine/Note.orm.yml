@@ -11,4 +11,4 @@ Kapke\Provider\Notes\Entity\Note:
         description:
             type: string
         content:
-            type: string
+            type: text

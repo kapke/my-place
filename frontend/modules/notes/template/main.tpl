@@ -1,5 +1,5 @@
 <section ng-controller="Notes.mainCtrl">
-	<div class="note new">
+	<div class="note new" ng-click="cancelEdits()">
 		<form ng-submit="addNote()">
 			<label>
 				<span>{{'Notes.title'|translate}}:</span>

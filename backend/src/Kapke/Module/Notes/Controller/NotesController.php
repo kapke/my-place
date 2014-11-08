@@ -22,4 +22,14 @@ class NotesController
     {
         return $this->crudController->postEntitiesAction($request);   	
     }
+
+    public function deleteNoteAction($id)
+    {
+        return $this->crudController->deleteEntityAction($id);
+    }
+
+    public function putNoteAction($id, Request $request)
+    {
+        return $this->crudController->putEntityAction($id, $request);
+    }
 }

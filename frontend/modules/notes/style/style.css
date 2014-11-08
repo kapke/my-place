@@ -4,11 +4,27 @@ note-view, .note {
   padding: 7.5pt;
   display: inline-block;
   min-width: 75pt;
+  max-width: 255pt;
   min-height: 45pt;
   float: left;
   box-shadow: 0em 1px 3px 0 rgba(0, 0, 0, 0.25);
   border-radius: 2px;
   transition: all 0.2s linear; }
+  note-view label, .note label {
+    padding: 0; }
+    note-view label span, .note label span {
+      display: none; }
+  note-view input, note-view textarea, .note input, .note textarea {
+    width: 165pt;
+    border: none; }
+    note-view input[name="title"], note-view textarea[name="title"], .note input[name="title"], .note textarea[name="title"] {
+      font-weight: bold; }
+    note-view input[type="submit"], note-view textarea[type="submit"], .note input[type="submit"], .note textarea[type="submit"] {
+      width: 105pt;
+      box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.5); }
+  note-view textarea, .note textarea {
+    height: 60pt;
+    resize: none; }
   note-view .title, .note .title {
     font-weight: normal;
     margin-bottom: 0.5em; }
@@ -21,7 +37,8 @@ note-view, .note {
 note-view {
   position: relative;
   overflow: hidden;
-  padding-bottom: 15pt; }
+  padding-bottom: 15pt;
+  max-height: 105pt; }
   note-view .action-bar {
     transition: all 0.2s ease-in;
     height: 0;
@@ -30,7 +47,8 @@ note-view {
     bottom: 0;
     left: 0;
     right: 0;
-    text-align: right; }
+    text-align: right;
+    background-color: rgba(255, 255, 255, 0.7); }
     note-view .action-bar button {
       background-color: transparent;
       border: none;
@@ -44,21 +62,6 @@ note-view {
       note-view .action-bar button:active {
         color: #00458f; }
   note-view:hover .action-bar, note-view.active .action-bar {
-    bottom: 0.75em;
-    height: 2em; }
-
-.note.new label {
-  padding: 0; }
-  .note.new label span {
-    display: none; }
-.note.new input, .note.new textarea {
-  width: 165pt;
-  border: none; }
-  .note.new input[name="title"], .note.new textarea[name="title"] {
-    font-weight: bold; }
-  .note.new input[type="submit"], .note.new textarea[type="submit"] {
-    width: 105pt;
-    box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.5); }
-.note.new textarea {
-  height: 60pt;
-  resize: none; }
+    bottom: 0em;
+    height: 2em;
+    padding-bottom: 0.75em; }

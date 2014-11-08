@@ -69,6 +69,48 @@ class CrudController extends FOSRestController
     	return $response;
 	}
 
+	public function deleteEntityAction($id)
+	{
+		$response = new Response();
+		$em = $this->entityManager;
+        $entity = $this->repository->find($id);
+        if(!is_null($entity)) {
+        	$em->remove($entity);
+        	$em->flush();	
+        	$response->setStatusCode(Response::HTTP_NO_CONTENT);
+        } else {
+        	$response->setStatusCode(Response::HTTP_NOT_FOUND);
+        }
+        
+        return $response;
+	}
+
+	public function putEntityAction($id, Request $request) 
+	{
+		$em = $this->entityManager;
+        $entity = $this->repository->find($id);
+        if(!is_null($entity)) {
+        	foreach($this->entityMetaData->fieldNames as $fieldName) {
+	    		$mapping = $this->entityMetaData->fieldMappings[$fieldName];
+	    		$type = $mapping['type'];
+	    		$value = $request->request->get($fieldName);
+	  			if(!is_null($value)) {
+	  				$this->entityMetaData->setFieldValue($entity, $fieldName, $value);	
+	  			}
+	    	}
+	    	$em->persist($entity);
+	        $em->flush();
+	        $view = $this->view($entity);
+
+	        return $this->handleView($view);
+        } else {
+        	$response = new Response();
+        	$response->setStatusCode(Response::HTTP_NOT_FOUND);
+
+        	return $response;
+        }
+	}
+
 	protected function handleView(View $view)
     {
         return $this->viewHandler->handle($view);
