@@ -1,18 +1,10 @@
-$baseFontSize: 12pt;
-$baseLineHeight: 15pt;
-$moduleListWidth: 16*$baseLineHeight;
-$menuWidth: 15*$baseLineHeight;
-$primaryColor: #006ab0;
-$secondaryColor: #fff;
-$ternaryColor: #00458f;
-
 @import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700,700italic,900&subset=latin,latin-ext);
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic);
+@import 'base';
 @import 'reset';
 
 body {
-	// font-family: 'Roboto', 'Titillium Web', Ubuntu, Verdana;
-	font-family: Ubuntu;
+	font-family: 'Roboto', Ubuntu, Verdana;
 	font-size: $baseFontSize;
 	line-height: $baseLineHeight;
 	color: $ternaryColor;
@@ -152,6 +144,9 @@ my-place-menu {
 	margin-top: 1*$baseLineHeight;
 	margin-right: $moduleListWidth + $menuWidth;
 	display: block;
+	&.no-menu {
+		margin-right: $moduleListWidth;
+	}
 }
 
 .module-section {
@@ -182,7 +177,7 @@ form {
 		margin: 0.25*$baseLineHeight;
 		padding: 0.25*$baseLineHeight;
 		font-family: Ubuntu;
-		font-size: 75%;
+		font-size: 1rem;
 	}
 	button, input[type="submit"] {
 		float: right;

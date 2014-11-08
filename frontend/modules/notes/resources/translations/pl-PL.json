@@ -5,4 +5,7 @@
   , "title": "Tytuł"
   , "description": "Skrót"
   , "content": "Treść"
+  , "delete": "Usuń"
+  , "cancel": "Anuluj"
+  , "save": "Zapisz"
 }

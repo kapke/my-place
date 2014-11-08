@@ -1,10 +1,9 @@
 parameters:
-#    kapke_my_place.example.class: Kapke\Bundle\MyPlaceBundle\Example
 
 services:
     kapke_my_place.modules_manager:
         class: Kapke\Bundle\MyPlaceBundle\DependencyInjection\ModuleManager
         arguments: [%kapke_my_place.modules%]
-#    kapke_my_place.example:
-#        class: %kapke_my_place.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    kapke_my_place.crud_controller_factory:
+        class: Kapke\Bundle\MyPlaceBundle\Controller\CrudControllerFactory
+        arguments: [@doctrine.orm.entity_manager, @fos_rest.view_handler, @validator]
