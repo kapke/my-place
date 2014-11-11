@@ -1,15 +1,16 @@
 'use strict';
-function menuCtrl ($scope, menuManager) {
-
+function menuCtrl () {
 }
 
-menuCtrl.$inject = ['$scope', 'MyPlace.Menu.menuManager'];
+menuCtrl.$inject = [];
 
 function menuDirective (menuManager) {
 	return {
 		restrict: 'E',
 		controller: function ($scope) {
-			$scope.menu = [];
+			$scope.menu = {
+				visible: false
+			};
 			menuManager.addEventListener('menuUpdated', function () {
 				$scope.menu = menuManager.getActualMenu();
 			});

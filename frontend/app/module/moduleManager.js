@@ -22,6 +22,7 @@ function moduleManager ($state, api, EventListener) {
 	this.setActiveModule = setActiveModule;
 	this.setActiveView = setActiveView;
 	this.getActiveModule = getActiveModule;
+	this.getModuleFamily = getModuleFamily;
 
 	function getModules () {
 		return modules;
@@ -65,6 +66,31 @@ function moduleManager ($state, api, EventListener) {
 
 	function getActiveView () {
 		return activeView;
+	}
+
+	function getModuleFamily (module) {
+		function getRoot (module) {
+			if(module && module.parent) {
+				return getRoot(module.parent);
+			} else {
+				return module;
+			}
+		}
+
+		function getDescendants (module) {
+			var output = [];
+			if(module) {
+				output.push(module);
+				if(module.children) {
+					module.children.forEach(function (module) {
+						output = output.concat(getDescendants(module));
+					});
+				}
+			}
+			return output;
+		}
+
+		return getDescendants(getRoot(module));
 	}
 }
 

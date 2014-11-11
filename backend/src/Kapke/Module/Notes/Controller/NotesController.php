@@ -2,39 +2,47 @@
 namespace Kapke\Module\Notes\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use FOS\RestBundle\Controller\FOSRestController;
-use Kapke\Provider\Notes\Entity\Note;
+use FOS\RestBundle\Controller\Annotations\Prefix;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;
 
-class NotesController extends FOSRestController
+
+/**
+ * @NamePrefix("notes_")
+ */
+class NotesController 
 {
+    private $crudController;
+
+    public function __construct($crudControllerFactory)
+    {
+        $entity = 'Kapke\\Provider\\Notes\\Entity\\Note';
+        $routePrefix = 'notes';
+        $entityName = ['note', 'notes'];
+        $this->crudController = $crudControllerFactory->get($entity, $routePrefix, $entityName);
+    }
+
     public function getNotesAction()
     {
-        $notesRepo = $this->getDoctrine()->getRepository('Kapke\\Provider\\Notes\\Entity\\Note');
-        $notes = $notesRepo->findAll();
-        $view = $this->view($notes);
+        return $this->crudController->getEntitiesAction();    
+    }
 
-        return $this->handleView($view);
+    public function getNoteAction($id)
+    {
+        return $this->crudController->getEntityAction($id);
     }
 
     public function postNotesAction(Request $request)
     {
-    	$note = new Note();
-    	$em = $this->getDoctrine()->getEntityManager();
-    	$title = $request->request->get('title');
-    	$description = $request->request->get('description');
-    	$content = $request->request->get('content');
-    	$title = $title?$title:'';
-    	$description = $description?$description:'';
-    	$content = $content?$content:'';
-    	$note->setTitle($title);
-    	$note->setDescription($description);
-    	$note->setContent($content);
-    	$em->persist($note);
-    	$em->flush();
-    	$response = new Response();
-    	$response->setStatusCode(Response::HTTP_CREATED);
+        return $this->crudController->postEntitiesAction($request);   	
+    }
 
-    	return $response;
+    public function deleteNoteAction($id)
+    {
+        return $this->crudController->deleteEntityAction($id);
+    }
+
+    public function putNoteAction($id, Request $request)
+    {
+        return $this->crudController->putEntityAction($id, $request);
     }
 }

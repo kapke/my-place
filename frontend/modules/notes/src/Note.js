@@ -1,3 +1,5 @@
+(function () {
+'use strict';
 function noteFactory (api) {
 	return api.getResource({
 		type: api.BACKEND
@@ -12,10 +14,11 @@ function noteFactory (api) {
 	  		  , params: {}
 	  		}
 	  	}
-	})
+	});
 }
 noteFactory.$inject = ['MyPlace.apiService'];
 
 angular.module('Notes')
 .factory('Notes.Note', noteFactory)
 ;
+})();

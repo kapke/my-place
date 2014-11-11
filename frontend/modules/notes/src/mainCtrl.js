@@ -1,40 +1,21 @@
 (function () {
 'use strict';
-function mainCtrl ($scope, Note) {
-	$scope.notes = [];
-	$scope.newNote = {};
+function mainCtrl ($scope, Controller, notesRepository) {
+	var parent = {};
+	Controller.call(parent, $scope, notesRepository, ['note', 'notes']);
 
-	$scope.addNote = addNote;
+	$scope.cancelEdits = cancelEdits;
 
-	loadNotes();
-	emptyNewNote();
+	$scope.$on('Notes.noteEdit', cancelEdits);
 
-	function loadNotes () {
-		Note.query(function (notes) {
-			$scope.notes = notes;
-		});
-	}		
+	parent.loadNotes();
+	parent.emptyNewNote();
 
-	function addNote () {
-		var note = new Note();
-		note.title = $scope.newNote.title;
-		note.description = $scope.newNote.description;
-		note.content = $scope.newNote.content;
-		note.$save(function () {
-			loadNotes();
-			emptyNewNote();
-		});
-	}
-
-	function emptyNewNote () {
-		$scope.newNote = {
-			title: ''
-		  , description: ''
-		  , content: ''
-		};
+	function cancelEdits () {
+		$scope.$broadcast('Notes.cancelEdit');
 	}
 }
-mainCtrl.$inject = ['$scope', 'Notes.Note'];
+mainCtrl.$inject = ['$scope', 'MyPlace.Crud.Controller', 'Notes.notesRepository'];
 
 angular.module('Notes')
 .controller('Notes.mainCtrl', mainCtrl)

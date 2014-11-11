@@ -38,15 +38,17 @@ function productsCtrl ($scope, productService, Vendor) {
 	}
 
 	function loadProducts () {
-		productService.getProducts(true).then(function (products) {
-			$scope.products = products;
-		});
+		productService.getProducts(true)
+			.then(function (products) {
+				$scope.products = products;
+			});
 	}
 
 	function loadVendors () {
-		productService.getVendors().then(function (vendors) {
-			$scope.vendors = vendors;
-		});
+		productService.getVendors()
+			.then(function (vendors) {
+				$scope.vendors = vendors;
+			});
 	}
 }
 productsCtrl.$inject = ['$scope', 'ClientData.productService'];

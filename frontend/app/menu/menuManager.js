@@ -4,19 +4,32 @@ function menuManager (EventListener, api, moduleManager) {
 	var that = this
 	  , actualMenu = {}
 	  , actualModule = null
+	  , actualModuleFamily = []
 	  , downloadTries = 0
 	  , downloadInterval = 100;
 	  ;
 
 	this.getActualMenu = getActualMenu;
 
-	moduleManager.addEventListener('activeModuleChanged', function () {
-		actualModule = moduleManager.getActiveModule();
-		updateMenu();
-	});
+	moduleManager.addEventListener('moduleListChanged', tryUpdate);
+	moduleManager.addEventListener('activeModuleChanged', tryUpdate);
 
 	function getActualMenu () {
 		return actualMenu;
+	}
+
+	function tryUpdate () {
+		actualModule = moduleManager.getActiveModule();
+		if(actualModule) {
+			var isModuleinFamily = (actualModuleFamily.indexOf(actualModule.slug) > -1);
+			if(!isModuleinFamily) {
+				actualModuleFamily = moduleManager.getModuleFamily(actualModule).map(function (module) {
+					return module.slug;
+				});
+				updateMenu();		
+			}
+			
+		}
 	}
 
 	function updateMenu () {
@@ -31,7 +44,12 @@ function menuManager (EventListener, api, moduleManager) {
 			if(actualModule.parent) {
 				actualModule = actualModule.parent;
 			}
-			actualMenu = api.Menu.get({module: actualModule.slug});
+			actualMenu = api.Menu.get({module: actualModule.slug}, function () {
+				calculateVisibility(actualMenu);
+				that.launchEvent('menuUpdated');
+			});
+			calculateVisibility(actualMenu);
+			that.launchEvent('menuUpdated');
 			(function (module) {
 				actualMenu.$promise.then(function (actualMenu) {
 					actualMenu.module = module.slug;
@@ -43,18 +61,37 @@ function menuManager (EventListener, api, moduleManager) {
 							submenu.module = submodule.slug;	
 						});
 						actualMenu.extensions.push(submenu);
+						calculateVisibility(actualMenu);
+						that.launchEvent('menuUpdated');
 					});
 				});
 			})(actualModule);
-			that.launchEvent('menuUpdated');
 			downloadInterval = 100;
 			downloadTries = 0;
 		} else {
-			actualModule = moduleManager.getActiveModule();
-			downloadTries += 1;
+			// actualModule = moduleManager.getActiveModule();
+			// downloadTries += 1;
 			actualMenu = {};
-			setTimeout(updateMenu, downloadInterval);
+			// setTimeout(updateMenu, downloadInterval);
 		}
+	}
+
+	function calculateVisibility (menu) {
+		var visible = false
+		  , itemsCount = 0
+		  ;
+
+		if(menu.items) {
+			itemsCount = menu.items.length;
+			visible = (itemsCount>0);
+			if(!visible && menu.extensions) {
+				menu.extensions.forEach(function (extension) {
+					itemsCount += extension.items.length;
+				});
+				visible = (itemsCount>0);
+			}
+		} 
+		menu.visible = visible;
 	}
 }
 
