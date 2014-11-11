@@ -1,7 +1,7 @@
 (function () {
 'use strict';
-function notesRepository (repositoryFactory, Note) {
-	repositoryFactory.call(
+function notesRepository (Repository, Note) {
+	Repository.call(
 		this
 	  ,	Note
 	  , ['note', 'notes']
@@ -12,7 +12,7 @@ function notesRepository (repositoryFactory, Note) {
 	);
 }
 
-notesRepository.$inject = ['MyPlace.Crud.repositoryFactory', 'Notes.Note'];
+notesRepository.$inject = ['MyPlace.Crud.Repository', 'Notes.Note'];
 
 angular.module('Notes')
 .service('Notes.notesRepository', notesRepository);

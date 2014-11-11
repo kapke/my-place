@@ -1,7 +1,7 @@
 (function () {
 'use strict';
 function repositoryFactory ($q, $http, EventListener, capitalizeFirst) {
-	function Crud (Entity, entityName, fields) {
+	function Repository (Entity, entityName, fields) {
 		var parent = {};
 		EventListener.call(parent);
 
@@ -94,10 +94,10 @@ function repositoryFactory ($q, $http, EventListener, capitalizeFirst) {
 			return output;
 		}
 	}
-	return Crud;
+	return Repository;
 }
 repositoryFactory.$inject = ['$q', '$http', 'MyPlace.Utils.EventListener', 'capitalizeFirst'];
 angular.module('MyPlace.Crud', ['MyPlace.Utils'])
-.factory('MyPlace.Crud.repositoryFactory', repositoryFactory)
+.factory('MyPlace.Crud.Repository', repositoryFactory)
 ;
 })();

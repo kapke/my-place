@@ -1,7 +1,7 @@
 (function () {
 'use strict';
 function controllerFactory (capitalizeFirst) {
-	function factory ($scope, repository, name, listeners) {
+	function Controller ($scope, repository, name, listeners) {
 		var singularName = name[0]
 		  ,	pluralName = name[1]
 		  , capitalizedSingular = capitalizeFirst(singularName)
@@ -36,10 +36,10 @@ function controllerFactory (capitalizeFirst) {
 			repository.addEventListener(deleteEvent, deleteEventListener);
 		}
 
-		this.loadEntities = loadEntities;
-		this.addEntity = addEntity;
-		this.emptyNewEntity = emptyNewEntity;
-		this.deleteEntity = deleteEntity;
+		this['load'+capitalizedPlural] = loadEntities;
+		this[add] = addEntity;
+		this['emptyNew'+capitalizedSingular] = emptyNewEntity;
+		this[deleteName] = deleteEntity;
 		this.deleteEventListener = deleteEventListener;
 		this.saveEventListener = saveEventListener;
 
@@ -74,10 +74,10 @@ function controllerFactory (capitalizeFirst) {
 		}
 
 	}
-	return factory;
+	return Controller;
 }
-controllerFactory.$inject = ['MyPlace.Utils.capitalizeFirst'];
+controllerFactory.$inject = ['capitalizeFirst'];
 angular.module('MyPlace.Crud')
-.factory('MyPlace.Crud.controllerFactory', controllerFactory)
+.factory('MyPlace.Crud.Controller', controllerFactory)
 ;
 })();
