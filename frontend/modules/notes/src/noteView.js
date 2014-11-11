@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-function noteView (Note) {
+function noteView (notesRepository) {
 	var notesCount = 0;
 	return {
 		templateUrl: 'frontend/modules/notes/template/noteView.tpl'
@@ -18,9 +18,7 @@ function noteView (Note) {
 	  		$scope.cancelEdit = cancelEdit;
 
 	  		$scope.deleteNote = function () {
-	  			$scope.note.$delete(function () {
-	  				$scope.$emit('Notes.noteDeleted');
-	  			});
+	  			notesRepository.deleteNote($scope.note);
 	  		}
 	  		$scope.edit = function () {
 	  			$scope.$emit('Notes.noteEdit');
@@ -34,7 +32,7 @@ function noteView (Note) {
 	  			$scope.editing = false;
 	  			$scope.note.title = $scope.edited.title;
 	  			$scope.note.content = $scope.edited.content;
-	  			$scope.note.$update();
+	  			notesRepository.updateNote($scope.note);
 	  		}
 	  		$scope.$on('$destroy', function () {
 	  			notesCount--;
@@ -46,7 +44,7 @@ function noteView (Note) {
 	  	}
 	}
 }
-noteView.$inject = ['Notes.Note'];
+noteView.$inject = ['Notes.notesRepository'];
 
 angular.module('Notes')
 .directive('noteView', noteView)

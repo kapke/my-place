@@ -6,4 +6,4 @@ services:
         arguments: [%kapke_my_place.modules%]
     kapke_my_place.crud_controller_factory:
         class: Kapke\Bundle\MyPlaceBundle\Controller\CrudControllerFactory
-        arguments: [@doctrine.orm.entity_manager, @fos_rest.view_handler, @validator]
+        arguments: [@doctrine.orm.entity_manager, @fos_rest.view_handler, @router]

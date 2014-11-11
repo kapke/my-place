@@ -2,7 +2,13 @@
 namespace Kapke\Module\Notes\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations\Prefix;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;
 
+
+/**
+ * @NamePrefix("notes_")
+ */
 class NotesController 
 {
     private $crudController;
@@ -10,12 +16,19 @@ class NotesController
     public function __construct($crudControllerFactory)
     {
         $entity = 'Kapke\\Provider\\Notes\\Entity\\Note';
-        $this->crudController = $crudControllerFactory->get($entity);
+        $routePrefix = 'notes';
+        $entityName = ['note', 'notes'];
+        $this->crudController = $crudControllerFactory->get($entity, $routePrefix, $entityName);
     }
 
     public function getNotesAction()
     {
         return $this->crudController->getEntitiesAction();    
+    }
+
+    public function getNoteAction($id)
+    {
+        return $this->crudController->getEntityAction($id);
     }
 
     public function postNotesAction(Request $request)
