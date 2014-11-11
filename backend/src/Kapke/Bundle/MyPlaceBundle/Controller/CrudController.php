@@ -13,14 +13,20 @@ class CrudController extends FOSRestController
 	private $repository;
 	private $viewHandler;
 	private $Entity;
+    private $routesPrefix;
+    private $entityName;
 	private $entityMetaData;
+    private $router;
 
-	public function __construct($entityManager, $viewHandler, $Entity) 
+	public function __construct($entityManager, $viewHandler, $router, $Entity, $prefix, $name) 
 	{
 		$this->entityManager = $entityManager;
 		$this->viewHandler = $viewHandler;
 		$this->repository = $entityManager->getRepository($Entity);
+        $this->router = $router;
 		$this->Entity = $Entity;
+        $this->routesPrefix = $prefix;
+        $this->entityName = $name;
 		$this->entityMetaData = $entityManager->getClassMetadata($Entity);
 	}
 
@@ -31,6 +37,14 @@ class CrudController extends FOSRestController
 
         return $this->handleView($view);
 	}
+
+    public function getEntityAction($id)
+    {
+        $entity = $this->repository->find($id);
+        $view = $this->view($entity);
+
+        return $this->handleView($view);
+    }
 
 	public function postEntitiesAction(Request $request)
 	{
@@ -64,6 +78,8 @@ class CrudController extends FOSRestController
     	$em->persist($entity);
     	$em->flush();
     	$response = new Response();
+        //print_r($this->getRouteName('GET'));
+        $response->headers->set('Location', $this->router->generate($this->getRouteName('GET'), ['id' => $entity->getId()]));
     	$response->setStatusCode(Response::HTTP_CREATED);
 
     	return $response;
@@ -114,5 +130,9 @@ class CrudController extends FOSRestController
 	protected function handleView(View $view)
     {
         return $this->viewHandler->handle($view);
+    }
+
+    protected function getRouteName ($method, $count=0) {
+        return $this->routesPrefix.'_'.strtolower($method).'_'.$this->entityName[$count];
     }
 }

@@ -1,51 +1,52 @@
 (function () {
 'use strict';
-function mainCtrl ($scope, Note) {
+function mainCtrl ($scope, notesRepository) {
 	$scope.notes = [];
 	$scope.newNote = {};
 
 	$scope.addNote = addNote;
 	$scope.cancelEdits = cancelEdits;
 
-	$scope.$on('Notes.noteDeleted', function () {
-		loadNotes();
-	});
+	// $scope.$on('Notes.noteDeleted', function () {
+	// 	loadNotes();
+	// });
 
 	$scope.$on('Notes.noteEdit', cancelEdits);
+
+	notesRepository.addEventListener('noteSaved', function (note) {
+		$scope.notes.push(note);
+		emptyNewNote();
+	});
+
+	notesRepository.addEventListener('noteDeleted', function (note) {
+		var index = $scope.notes.indexOf(note);
+		if(index >= 0) {
+			$scope.notes.splice(index, 1);
+		}
+	});
 
 	loadNotes();
 	emptyNewNote();
 
 	function loadNotes () {
-		Note.query(function (notes) {
+		notesRepository.getNotes().then(function (notes) {
 			$scope.notes = notes;
 		});
 	}		
 
 	function addNote () {
-		var note = new Note();
-		note.title = $scope.newNote.title;
-		note.description = $scope.newNote.description;
-		note.content = $scope.newNote.content;
-		note.$save(function () {
-			loadNotes();
-			emptyNewNote();
-		});
+		notesRepository.saveNote(notesRepository.createNote($scope.newNote));
 	}
 
 	function emptyNewNote () {
-		$scope.newNote = {
-			title: ''
-		  , description: ''
-		  , content: ''
-		};
+		$scope.newNote = notesRepository.getEmptyNoteData();
 	}
 
 	function cancelEdits () {
 		$scope.$broadcast('Notes.cancelEdit');
 	}
 }
-mainCtrl.$inject = ['$scope', 'Notes.Note'];
+mainCtrl.$inject = ['$scope', 'Notes.notesRepository'];
 
 angular.module('Notes')
 .controller('Notes.mainCtrl', mainCtrl)

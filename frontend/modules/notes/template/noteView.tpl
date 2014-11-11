@@ -7,7 +7,7 @@
 	<label><span>{{'Notes.content'|translate}}</span><textarea type="text" name="content" placeholder="{{'Notes.content'|translate}}" ng-model="edited.content"></textarea></label>
 </form>
 <div class="action-bar">
-	<button ng-click="deleteNote()" ng-hide="editing">{{'Notes.delete'|translate}}</button>
+	<button ng-click="deleteNote()">{{'Notes.delete'|translate}}</button>
 	<button ng-click="cancelEdit()" ng-show="editing">{{'Notes.cancel'|translate}}</button>
 	<button ng-click="saveEdit()" ng-show="editing">{{'Notes.save'|translate}}</button>
 </div>

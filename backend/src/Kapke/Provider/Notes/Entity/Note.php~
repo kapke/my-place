@@ -13,11 +13,6 @@ class Note
     /**
 	 * @var string
 	 */
-    private $description;
-
-    /**
-	 * @var string
-	 */
     private $content;
 
     /**
@@ -51,29 +46,6 @@ class Note
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Set description
-     *
-     * @param  string $description
-     * @return Note
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
