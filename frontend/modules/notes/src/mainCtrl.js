@@ -2,7 +2,7 @@
 'use strict';
 function mainCtrl ($scope, Controller, notesRepository) {
 	var parent = {};
-	Controller.call(parent, $scope, notesRepository, ['note', 'notes']);
+	Controller.call(parent, $scope, notesRepository);
 
 	$scope.cancelEdits = cancelEdits;
 

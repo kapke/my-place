@@ -2,16 +2,12 @@ function productFactory (api) {
 	var Product = api.getResource({
 		type: api.BACKEND
 	  , module: 'client_data'
-	  , resource: 'products/:id'
-	  , config: {
-		  	id: '@id'
-		}
-	  , actions: {
-	  		update: {
-	  			method: 'PUT'
-	  		  , params: {}
-	  		}
-	    }
+	  , name: ['product', 'products']
+	  , fields: {
+	  		name: {type: String}
+	  	  ,	vendor: {type: String}
+	  	  , id: {type: Number}
+	  	}
 	});
 	Product.prototype.getFullName = function () {
 		var vendorName = '';

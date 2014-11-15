@@ -2,16 +2,10 @@ function vendorFactory (api) {
 	return api.getResource({
 		type: api.BACKEND
 	  , module: 'client_data'
-	  , resource: 'vendors/:id'
-	  , config: {
-		  	id: '@id'
-		}
-	  , actions: {
-	  		update: {
-	  			method: 'PUT'
-	  		  , params: {}
-	  		}
-	    }
+	  , name: ['vendor', 'vendors']
+	  , fields: {
+	  		name: {type: String}
+	  	}
 	});
 }
 vendorFactory.$inject = ['MyPlace.apiService'];

@@ -14,8 +14,6 @@ class ConversionsController extends FOSRestController
 	 */
     public function getConversionsAction($clientId, $productId)
     {
-        // print_r($clientId);
-        // print_r($productId);
         $conversions = $this->getDoctrine()->getRepository('Kapke\\Module\\ClientConversions\\Entity\\Conversion')->findBy([
             'client' => $clientId
           , 'product' => $productId

@@ -4,15 +4,10 @@ function noteFactory (api) {
 	return api.getResource({
 		type: api.BACKEND
 	  , module: 'notes'
-	  , resource: 'notes/:id'
-	  , config: {
-	  		id: '@id'
-	  	}
-	  , actions: {
-	  		update: {
-	  			method: 'PUT'
-	  		  , params: {}
-	  		}
+	  , name: ['note', 'notes']
+	  , fields: {
+			title: {type: String}
+	  	  ,	content: {defaultValue: ''}
 	  	}
 	});
 }

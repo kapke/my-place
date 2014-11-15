@@ -1,8 +1,9 @@
 (function () {
 'use strict';
 function controllerFactory (capitalizeFirst) {
-	function Controller ($scope, repository, name, listeners) {
-		var singularName = name[0]
+	function Controller ($scope, repository, listeners) {
+		var name = repository.Entity.$name
+		  ,	singularName = name[0]
 		  ,	pluralName = name[1]
 		  , capitalizedSingular = capitalizeFirst(singularName)
 		  , capitalizedPlural = capitalizeFirst(pluralName)

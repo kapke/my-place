@@ -1,8 +1,11 @@
 (function () {
 'use strict';
 function repositoryFactory ($q, $http, EventListener, capitalizeFirst) {
-	function Repository (Entity, entityName, fields) {
-		var parent = {};
+	function Repository (Entity) {
+		var parent = {}
+		  , entityName = Entity.$name
+		  , fields = Entity.$fields
+		  ;
 		EventListener.call(parent);
 
 		var output = [
@@ -26,6 +29,8 @@ function repositoryFactory ($q, $http, EventListener, capitalizeFirst) {
 		for (var prop in parent) {
 			this[prop] = parent[prop];
 		}
+
+		this.Entity = Entity;
 
 		function createEntity (data) {
 			var entity = new Entity()
@@ -75,23 +80,31 @@ function repositoryFactory ($q, $http, EventListener, capitalizeFirst) {
 
 		function getEmptyEntityData () {
 			var output = {};
+
 			for(var prop in fields) {
-				var field = fields[prop];
+				output[prop] = getDefaultValue(fields[prop]);
+				
+			}
+
+			return output;
+
+			function getDefaultValue (field) {
+				var value = null;
+				
 				if(typeof field.defaultValue != 'undefined') {
-					output[prop] = field.defaultValue;
+					value = field.defaultValue;
 				} else if (field.type) {
-					var value = null;
 					switch(field.type) {
 						case String:
 							value = '';
 							break;
 						case Number:
 							value = 0;
-					}
-					output[prop] = value;
+					}	
 				}
+
+				return value;
 			}
-			return output;
 		}
 	}
 	return Repository;

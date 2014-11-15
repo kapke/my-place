@@ -127,7 +127,7 @@ class CrudController extends FOSRestController
         }
 	}
 
-	protected function handleView(View $view)
+	public function handleView(View $view)
     {
         return $this->viewHandler->handle($view);
     }
