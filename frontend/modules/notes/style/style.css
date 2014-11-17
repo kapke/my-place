@@ -1,12 +1,21 @@
+notes-wrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 180pt;
+  margin: 7.5pt;
+  padding: 7.5pt; }
+  notes-wrapper .column {
+    width: 210pt;
+    display: inline-block;
+    vertical-align: top; }
+
 note-view, .note {
   color: black;
   margin: 7.5pt;
   padding: 7.5pt;
   display: inline-block;
-  min-width: 75pt;
-  max-width: 255pt;
+  width: 180pt;
   min-height: 45pt;
-  float: left;
   box-shadow: 0em 1px 3px 0 rgba(0, 0, 0, 0.25);
   border-radius: 2px;
   transition: all 0.2s linear; }
@@ -31,14 +40,13 @@ note-view, .note {
   note-view .content, .note .content {
     font-weight: 100; }
   note-view:hover, note-view.active, .note:hover, .note.active {
-    transform: translate(-2px, -2px);
-    box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.5); }
+    transform: translate(0, -2px);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5); }
 
 note-view {
   position: relative;
   overflow: hidden;
-  padding-bottom: 15pt;
-  max-height: 105pt; }
+  padding-bottom: 15pt; }
   note-view .action-bar {
     transition: all 0.2s ease-in;
     height: 0;

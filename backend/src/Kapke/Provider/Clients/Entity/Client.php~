@@ -4,35 +4,11 @@ namespace Kapke\Provider\Clients\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="clients_provider__client")
- */
 class Client
 {
-    /**
-	 * @ORM\Column(type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
     private $id;
-    /**
-	 * @ORM\Column(type="string")
-	 * @var string
-	 */
     private $name;
-    /**
-	 * @ORM\Column(type="string")
-	 * @var string
-	 */
     private $surname;
-    /**
-     * @ORM\ManyToMany(targetEntity="Product")
-     * @ORM\JoinTable(name="clients_provider__clients_products",
-     *    joinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="id")},
-     *    inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id")}
-     *    )
-     */
     private $products;
 
     public function __construct($name, $surname)

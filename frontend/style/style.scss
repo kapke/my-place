@@ -215,3 +215,10 @@ ul, ol {
 		transform: translateX(0);
 	}
 }
+
+.centered {
+	text-align: center;
+	> * {
+		text-align: left;
+	}
+}

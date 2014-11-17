@@ -5,39 +5,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Kapke\Provider\Clients\Entity\Product;
 use Kapke\Provider\Clients\Entity\Client;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="client_conversions__conversion")
- */
 class Conversion
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
     private $id;
-    /**
-     * @ORM\ManyToOne(targetEntity="Kapke\Provider\Clients\Entity\Product")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
-     * @var Product
-     */
     private $product;
-    /**
-     * @ORM\ManyToOne(targetEntity="Kapke\Provider\Clients\Entity\Client")
-     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
-     * @var Client
-     */
     private $client;
-    /**
-     * @ORM\Column(type="datetime")
-     * @var \DateTime
-     */
     private $timestamp;
-    /**
-     * @ORM\Column(type="string", options={"default":""})
-     * @var string
-     */
     private $note;
 
     public function __construct()
@@ -79,52 +52,6 @@ class Conversion
     }
 
     /**
-     * Set product
-     *
-     * @param \Kapke\Module\ClientConversions\Entity\Product $product
-     * @return Conversion
-     */
-    public function setProduct(Product $product = null)
-    {
-        $this->product = $product;
-
-        return $this;
-    }
-
-    /**
-     * Get product
-     *
-     * @return \Kapke\Module\ClientConversions\Entity\Product 
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
-
-    /**
-     * Set client
-     *
-     * @param \Kapke\Module\ClientConversions\Entity\Client $client
-     * @return Conversion
-     */
-    public function setClient(Client $client = null)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * Get client
-     *
-     * @return \Kapke\Module\ClientConversions\Entity\Client 
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
-
-    /**
      * Set note
      *
      * @param string $note
@@ -145,5 +72,51 @@ class Conversion
     public function getNote()
     {
         return $this->note;
+    }
+
+    /**
+     * Set product
+     *
+     * @param \Kapke\Provider\Clients\Entity\Product $product
+     * @return Conversion
+     */
+    public function setProduct(\Kapke\Provider\Clients\Entity\Product $product = null)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product
+     *
+     * @return \Kapke\Provider\Clients\Entity\Product 
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \Kapke\Provider\Clients\Entity\Client $client
+     * @return Conversion
+     */
+    public function setClient(\Kapke\Provider\Clients\Entity\Client $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \Kapke\Provider\Clients\Entity\Client 
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 }

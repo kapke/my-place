@@ -1,4 +1,4 @@
-<section ng-controller="Notes.mainCtrl">
+<section ng-controller="Notes.mainCtrl" class="centered">
 	<div class="note new" ng-click="cancelEdits()">
 		<form ng-submit="addNote()">
 			<label>
@@ -12,5 +12,6 @@
 			<input type="submit" value="{{'Notes.addNote'|translate}}" />
 		</form>	
 	</div>
-	<note-view ng-repeat="note in notes | orderBy:'id':true" note="note" />
+	<notes-wrapper notes="notes"></notes-wrapper>
+	
 </section>

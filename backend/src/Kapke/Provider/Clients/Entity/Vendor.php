@@ -3,22 +3,9 @@ namespace Kapke\Provider\Clients\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="clients_provider__vendor")
- */
 class Vendor
 {
-    /**
-	 * @ORM\Column(type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-
     private $id;
-    /**
-	 * @ORM\Column(type="string")
-	 */
     private $name;
 
     public function __construct($name)
@@ -32,9 +19,22 @@ class Vendor
     }
 
     /**
+     * Set id
+     *
+     * @param integer $id
+     * @return Vendor
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -44,7 +44,7 @@ class Vendor
     /**
      * Set name
      *
-     * @param  string $name
+     * @param string $name
      * @return Vendor
      */
     public function setName($name)
@@ -57,7 +57,7 @@ class Vendor
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {

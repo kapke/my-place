@@ -170,3 +170,7 @@ ul li, ol li {
   100% {
     opacity: 1;
     transform: translateX(0); } }
+.centered {
+  text-align: center; }
+  .centered > * {
+    text-align: left; }

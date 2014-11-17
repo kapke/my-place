@@ -1,14 +1,28 @@
 @import '../../../style/base';
 
+notes-wrapper {
+	display: inline-block;
+	vertical-align: top;
+	width: 12*$baseLineHeight;
+	margin: 0.5*$baseLineHeight;
+	padding: 0.5*$baseLineHeight;
+	.column {
+		width: 14*$baseLineHeight;
+		display: inline-block;
+		vertical-align: top;
+	}
+}
+
 note-view, .note {
 	color: black;
 	margin: 0.5*$baseLineHeight;
 	padding: 0.5*$baseLineHeight;
 	display: inline-block;
-	min-width: 5*$baseLineHeight;
-	max-width: 17*$baseLineHeight;
+	//min-width: 5*$baseLineHeight;
+	//max-width: 17*$baseLineHeight;
+	width: 12*$baseLineHeight;
 	min-height: 3*$baseLineHeight;
-	float: left;
+	//float: left;
 	box-shadow: 0em 1px 3px 0 rgba(0, 0, 0, 0.25);
 	border-radius: 2px;
 	transition: all 0.2s linear;
@@ -41,8 +55,8 @@ note-view, .note {
 		font-weight: 100;
 	}
 	&:hover, &.active {
-		transform: translate(-2px, -2px);
-		box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.5);
+		transform: translate(0, -2px);
+		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
 	}
 }
 
@@ -50,7 +64,7 @@ note-view {
 	position: relative;
 	overflow: hidden;
 	padding-bottom: $baseLineHeight;
-	max-height: 7*$baseLineHeight;
+	//max-height: 7*$baseLineHeight;
 	.action-bar {
 		transition: all 0.2s ease-in;
 		height: 0;
