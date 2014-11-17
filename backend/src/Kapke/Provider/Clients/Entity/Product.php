@@ -3,29 +3,12 @@ namespace Kapke\Provider\Clients\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="clients_provider__product")
- */
 class Product
 {
-    /**
-	 * @ORM\Column(type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
     private $id;
-    /**
-	 * @ORM\ManyToOne(targetEntity="Vendor")
-     * @ORM\JoinColumn(name="vendor_id", referencedColumnName="id")
-	 */
     private $vendor;
-    /**
-	 * @ORM\Column(type="string")
-	 */
     private $name;
-
-    private $clients;
+    // private $clients;
 
     public function __construct(Vendor $vendor, $name)
     {
@@ -34,9 +17,22 @@ class Product
     }
 
     /**
+     * Set id
+     *
+     * @param integer $id
+     * @return Product
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -44,32 +40,9 @@ class Product
     }
 
     /**
-     * Set vendor
-     *
-     * @param  string  $vendor
-     * @return Product
-     */
-    public function setVendor(Vendor $vendor)
-    {
-        $this->vendor = $vendor;
-
-        return $this;
-    }
-
-    /**
-     * Get vendor
-     *
-     * @return string
-     */
-    public function getVendor()
-    {
-        return $this->vendor;
-    }
-
-    /**
      * Set name
      *
-     * @param  string  $name
+     * @param string $name
      * @return Product
      */
     public function setName($name)
@@ -82,10 +55,33 @@ class Product
     /**
      * Get name
      *
-     * @return string
+     * @return string 
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set vendor
+     *
+     * @param \Kapke\Provider\Clients\Entity\Vendor $vendor
+     * @return Product
+     */
+    public function setVendor(\Kapke\Provider\Clients\Entity\Vendor $vendor = null)
+    {
+        $this->vendor = $vendor;
+
+        return $this;
+    }
+
+    /**
+     * Get vendor
+     *
+     * @return \Kapke\Provider\Clients\Entity\Vendor 
+     */
+    public function getVendor()
+    {
+        return $this->vendor;
     }
 }

@@ -5,27 +5,35 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Kapke\Provider\Clients\Entity\Vendor;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;
 
+/**
+ * @NamePrefix("client_data_")
+ */
 class VendorsController extends FOSRestController
 {
+    private $crudController;
+
+    public function __construct($crudControllerFactory)
+    {
+        $entity = 'Kapke\\Provider\\Clients\\Entity\\Vendor';
+        $routePrefix = 'client_data';
+        $entityName = ['vendor', 'vendors'];
+        $this->crudController = $crudControllerFactory->get($entity, $routePrefix, $entityName);
+    }  
+
     public function getVendorsAction()
     {
-        $vendors = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Vendor')->findAll();
-        $view = $this->view($vendors);
+        return $this->crudController->getEntitiesAction();
+    }
 
-        return $this->handleView($view);
+    public function getVendorAction($id)
+    {
+        return $this->crudController->getEntityAction($id);
     }
 
     public function postVendorsAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $name = $request->request->get('name');
-        $vendor = new Vendor($name);
-        $em->persist($vendor);
-        $em->flush();
-        $response = new Response();
-        $response->setStatusCode(Response::HTTP_CREATED);
-
-        return $response;
+        return $this->crudController->postEntitiesAction($request);
     }
 }

@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-function mainCtrl ($scope, clientService, Conversion) {
+function mainCtrl ($scope, clientsRepository, Conversion) {
 	$scope.clients = [];
 	$scope.conversions = [];
 	$scope.actualClient = false;
@@ -18,6 +18,7 @@ function mainCtrl ($scope, clientService, Conversion) {
 	function selectClient (client) {
 		$scope.actualClient = client;
 		$scope.actualProduct = false;
+		$scope.conversions = [];
 	}
 
 	function selectProduct (product) {
@@ -27,7 +28,7 @@ function mainCtrl ($scope, clientService, Conversion) {
 	}
 
 	function loadClients () {
-		clientService.getClients().then(function (clients) {
+		clientsRepository.getClients().then(function (clients) {
 			$scope.clients = clients;
 		});
 	}
@@ -54,7 +55,7 @@ function mainCtrl ($scope, clientService, Conversion) {
 	}
 }
 
-mainCtrl.$inject = ['$scope', 'ClientData.clientService', 'ClientConversions.Conversion'];
+mainCtrl.$inject = ['$scope', 'ClientData.clientsRepository', 'ClientConversions.Conversion'];
 
 angular.module('ClientConversions')
 .controller('ClientConversions.mainCtrl', mainCtrl)

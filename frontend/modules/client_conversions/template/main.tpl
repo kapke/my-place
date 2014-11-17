@@ -15,7 +15,7 @@
 			</li>
 		</ul>
 	</section>
-	<section class="module-section" ng-if="actualClient && actualProduct">
+	<section class="module-section">
 		<h2>{{'ClientConversions.conversions'|translate}}</h2>
 		<ul>
 			<li ng-repeat="conversion in conversions">

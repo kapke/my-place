@@ -1,15 +1,7 @@
 (function () {
 'use strict';
 function notesRepository (Repository, Note) {
-	Repository.call(
-		this
-	  ,	Note
-	  , ['note', 'notes']
-	  , {
-			title: {type: String}
-	  	  ,	content: {defaultValue: ''}
-		}
-	);
+	Repository.call(this, Note);
 }
 
 notesRepository.$inject = ['MyPlace.Crud.Repository', 'Notes.Note'];

@@ -5,58 +5,63 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;
 use Kapke\Provider\Clients\Entity\Client;
 use Kapke\Provider\Clients\Entity\Product;
 
+
+/**
+ * @NamePrefix("client_data_")
+ */
 class ClientsController extends FOSRestController
 {
+    private $doctrine;
+    private $crudController;
+
+    public function __construct($doctrine, $crudControllerFactory)
+    {
+        $this->doctrine = $doctrine;
+        $entity = 'Kapke\\Provider\\Clients\\Entity\\Client';
+        $routePrefix = 'client_data';
+        $entityName = ['client', 'clients'];
+        $this->crudController = $crudControllerFactory->get($entity, $routePrefix, $entityName);
+    }
+
     public function getClientsAction()
     {
-        $clients = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Client')->findAll();
-        $view = $this->view($clients);
+        return $this->crudController->getEntitiesAction(); 
+    }
 
-        return $this->handleView($view);
+    public function getClientAction($id)
+    {
+        return $this->crudController->getEntityAction($id);
     }
 
     public function postClientsAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $newClient = new Client($request->request->get('name'), $request->request->get('surname'));
-        $em->persist($newClient);
-        $em->flush();
-        $response = new Response();
-        $response->setStatusCode(Response::HTTP_CREATED);
-
-        return $response;
+        return $this->crudController->postEntitiesAction($request);
     }
 
     public function deleteClientAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $client = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Client')->find($id);
-        $em->remove($client);
-        $em->flush();
-        $response = new Response();
-        $response->setStatusCode(Response::HTTP_NO_CONTENT);
-
-        return $response;
+        return $this->crudController->deleteEntityAction($id);
     }
 
     public function putClientAction($id, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $client = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Client')->find($id);
+        $em = $this->doctrine->getManager();
+        $client = $this->doctrine->getRepository('Kapke\\Provider\\Clients\\Entity\\Client')->find($id);
         $client->setName($request->request->get('name'));
         $client->setSurname($request->request->get('surname'));
         $addedProduct = $request->request->get('addedProduct');
         if ($addedProduct) {
-            $product = $this->getDoctrine()->getRepository('Kapke\\Provider\\Clients\\Entity\\Product')->find($addedProduct['id']);
+            $product = $this->doctrine->getRepository('Kapke\\Provider\\Clients\\Entity\\Product')->find($addedProduct['id']);
             $client->addProduct($product);
         }
         $em->persist($client);
         $em->flush();
         $view = $this->view($client);
 
-        return $this->handleView($view);
+        return $this->crudController->handleView($view);
     }
 }

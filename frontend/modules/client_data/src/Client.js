@@ -2,16 +2,11 @@ function clientFactory (api) {
 	return api.getResource({
 		type: api.BACKEND
 	  , module: 'client_data'
-	  , resource: 'clients/:id'
-	  , config: {
-		  	id: '@id'
-		}
-	  , actions: {
-	  		update: {
-	  			method: 'PUT'
-	  		  , params: {}
-	  		}
-	    }
+	  , name: ['client', 'clients']
+	  , fields: {
+	  		name: {type: String}
+	  	  , surname: {type: String}
+	  	}
 	});
 }
 clientFactory.$inject = ['MyPlace.apiService'];

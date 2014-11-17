@@ -15,21 +15,30 @@ function apiService ($resource, Config) {
 	this.Menu = Menu;
 
 	function getResource (config) {
-		var prefix = config.type || BACKEND
+		var outputResource
+		  , prefix = config.type || BACKEND
 		  , sufix = ''
+		  , name = config.name
+		  , fields = config.fields
 		  , module = config.module || ''
-		  , resource = config.resource
-		  , rConfig = config.config || undefined
-		  , actions = config.actions || undefined
+		  , resource = config.resource || name[1]+'/:id'
+		  , rConfig = config.config || {id: '@id'}
+		  , actions = config.actions || {
+		  		update: {method: 'PUT', params: {}}
+		  	}
 		  ;
 		if(config.type == FRONTEND) {
 			prefix += 'modules/'
 		}
-		return $resource(prefix+module+'/'+resource+sufix, rConfig, actions);
+		outputResource = $resource(prefix+module+'/'+resource+sufix, rConfig, actions);
+		outputResource.$fields = fields;
+		outputResource.$name = name;
+		return outputResource;
 	}
 }
 
 apiService.$inject = ['$resource', 'MyPlace.configService'];
 
 angular.module('MyPlace.Api', ['ngResource'])
-.service('MyPlace.apiService', apiService);
+.service('MyPlace.apiService', apiService)
+;

@@ -1,8 +1,0 @@
-clients:
-    type: rest
-    resource: Kapke\Module\ClientData\Controller\ClientsController
-
-client_products:
-    type: rest
-    parent: clients
-    resource: Kapke\Module\ClientData\Controller\ClientsProductsController

@@ -1,11 +1,12 @@
 client_data.clients:
     type: rest
-    resource: @KapkeClientDataModuleBundle/Resources/config/users_route.yml
+    resource: kapke_client_data_module.clients_controller
+
 
 client_data.products:
     type: rest
-    resource: Kapke\Module\ClientData\Controller\ProductsController
+    resource: kapke_client_data_module.products_controller
 
 client_data.vendors:
     type: rest
-    resource: Kapke\Module\ClientData\Controller\VendorsController
+    resource: kapke_client_data_module.vendors_controller
