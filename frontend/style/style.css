@@ -25,7 +25,7 @@ my-place-module-list {
   padding: 15pt;
   padding-left: 22.5pt;
   padding-right: 0;
-  box-shadow: 7.5pt 0 7.5pt 0pt rgba(0, 0, 0, 0.25) inset; }
+  box-shadow: 2px 0 7.5pt 0 rgba(0, 0, 0, 0.5) inset; }
   my-place-module-list h3 {
     display: none; }
   my-place-module-list ul li {
@@ -100,7 +100,6 @@ my-place-menu {
   bottom: 0;
   padding: 15pt;
   padding-right: 0;
-  box-shadow: 7.5pt 0 7.5pt 0pt rgba(0, 0, 0, 0.25) inset;
   transition: all 0.2 linear; }
   my-place-menu.ng-hide-remove {
     -webkit-animation: 0.2s show; }
@@ -121,6 +120,35 @@ my-place-menu {
   display: block; }
   .my-place-content.no-menu {
     margin-right: 240pt; }
+    .my-place-content.no-menu:after {
+      opacity: 0;
+      right: 240pt; }
+    .my-place-content.no-menu:before {
+      opacity: 0;
+      right: 240pt; }
+  .my-place-content:after {
+    display: block;
+    position: fixed;
+    right: 480pt;
+    top: 0;
+    bottom: 0;
+    width: 1em;
+    box-shadow: 2px 0 3.75pt 0 rgba(0, 0, 0, 0.5);
+    color: transparent;
+    content: ' ';
+    transition: all 0.2s linear; }
+  .my-place-content:before {
+    z-index: 1;
+    display: block;
+    position: fixed;
+    right: 487.5pt;
+    top: 0;
+    bottom: 0;
+    width: 1em;
+    color: transparent;
+    background-color: white;
+    content: ' ';
+    transition: all 0.2s linear; }
 
 .module-section {
   display: inline-block;

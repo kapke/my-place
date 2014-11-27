@@ -26,7 +26,7 @@ my-place-module-list {
 	padding: 1*$baseLineHeight;
 	padding-left: 1.5*$baseLineHeight;
 	padding-right: 0;
-	box-shadow: 0.5*$baseLineHeight 0 0.5*$baseLineHeight 0*$baseLineHeight rgba(0, 0, 0, 0.25) inset;
+	box-shadow: 2px 0 0.5*$baseLineHeight 0 rgba(0, 0, 0, 0.5) inset;
 	h3 {
 		display: none;
 	}
@@ -118,7 +118,6 @@ my-place-menu {
 	bottom: 0;
 	padding: 1*$baseLineHeight;
 	padding-right: 0;
-	box-shadow: 0.5*$baseLineHeight 0 0.5*$baseLineHeight 0*$baseLineHeight rgba(0, 0, 0, 0.25) inset;
 	transition: all 0.2 linear;
 	&.ng-hide-remove {
 		-webkit-animation: 0.2s show;
@@ -146,6 +145,39 @@ my-place-menu {
 	display: block;
 	&.no-menu {
 		margin-right: $moduleListWidth;
+		&:after {
+			opacity: 0;
+			right: $moduleListWidth;
+		}
+		&:before {
+			opacity: 0;
+			right: $moduleListWidth;
+		}
+	}
+	&:after {
+		display: block;
+		position: fixed;
+		right: $moduleListWidth + $menuWidth + $baseLineHeight;
+		top: 0;
+		bottom: 0;
+		width: 1em;
+		box-shadow: 2px 0 0.25*$baseLineHeight 0 rgba(0, 0, 0, 0.5);
+		color: transparent;
+		content: ' ';
+		transition: all 0.2s linear;
+	}
+	&:before {
+		z-index: 1;
+		display: block;
+		position: fixed;
+		right: $moduleListWidth + $menuWidth + 1.5*$baseLineHeight;
+		top: 0;
+		bottom: 0;
+		width: 1em;
+		color: transparent;
+		background-color: $secondaryColor;
+		content: ' ';
+		transition: all 0.2s linear;
 	}
 }
 
