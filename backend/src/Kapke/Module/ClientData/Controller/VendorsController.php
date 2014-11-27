@@ -3,7 +3,6 @@ namespace Kapke\Module\ClientData\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Kapke\Provider\Clients\Entity\Vendor;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
 
@@ -20,7 +19,7 @@ class VendorsController extends FOSRestController
         $routePrefix = 'client_data';
         $entityName = ['vendor', 'vendors'];
         $this->crudController = $crudControllerFactory->get($entity, $routePrefix, $entityName);
-    }  
+    }
 
     public function getVendorsAction()
     {

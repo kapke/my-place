@@ -1,8 +1,6 @@
 <?php
 namespace Kapke\Provider\Clients\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 class Product
 {
     private $id;
@@ -19,7 +17,7 @@ class Product
     /**
      * Set id
      *
-     * @param integer $id
+     * @param  integer $id
      * @return Product
      */
     public function setId($id)
@@ -32,7 +30,7 @@ class Product
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -42,7 +40,7 @@ class Product
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string  $name
      * @return Product
      */
     public function setName($name)
@@ -55,7 +53,7 @@ class Product
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -65,7 +63,7 @@ class Product
     /**
      * Set vendor
      *
-     * @param \Kapke\Provider\Clients\Entity\Vendor $vendor
+     * @param  \Kapke\Provider\Clients\Entity\Vendor $vendor
      * @return Product
      */
     public function setVendor(\Kapke\Provider\Clients\Entity\Vendor $vendor = null)
@@ -78,7 +76,7 @@ class Product
     /**
      * Get vendor
      *
-     * @return \Kapke\Provider\Clients\Entity\Vendor 
+     * @return \Kapke\Provider\Clients\Entity\Vendor
      */
     public function getVendor()
     {

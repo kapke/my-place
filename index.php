@@ -1,1 +1,1 @@
-<?php include('frontend/index.html'); ?>
+<?php include 'frontend/index.html';

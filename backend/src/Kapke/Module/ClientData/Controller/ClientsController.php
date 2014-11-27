@@ -2,13 +2,11 @@
 namespace Kapke\Module\ClientData\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
 use Kapke\Provider\Clients\Entity\Client;
 use Kapke\Provider\Clients\Entity\Product;
-
 
 /**
  * @NamePrefix("client_data_")
@@ -29,7 +27,7 @@ class ClientsController extends FOSRestController
 
     public function getClientsAction()
     {
-        return $this->crudController->getEntitiesAction(); 
+        return $this->crudController->getEntitiesAction();
     }
 
     public function getClientAction($id)

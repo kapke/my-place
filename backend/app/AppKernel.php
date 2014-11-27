@@ -23,7 +23,9 @@ class AppKernel extends Kernel
             new Kapke\Module\ClientData\KapkeClientDataModuleBundle(),
             new Kapke\Module\Notes\KapkeNotesModuleBundle(),
             new Kapke\Provider\Clients\KapkeClientsProviderBundle(),
-            new Kapke\Provider\Notes\KapkeNotesProviderBundle()
+            new Kapke\Provider\Notes\KapkeNotesProviderBundle(),
+            new Kapke\Provider\Events\KapkeEventsProviderBundle(),
+            new Kapke\Module\Meetspace\KapkeMeetspaceModuleBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

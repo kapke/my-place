@@ -19,5 +19,5 @@ Kapke\Provider\Clients\Entity\Client:
     fields:
         name:
             type: string
-        surname: 
+        surname:
             type: string

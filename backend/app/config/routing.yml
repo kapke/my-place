@@ -10,3 +10,6 @@ module_client_data:
 module_notes:
     resource: "@KapkeNotesModuleBundle/Resources/config/routing.yml"
     prefix:   /notes/
+meetspace:
+    resource: "@KapkeMeetspaceModuleBundle/Resources/config/routing.yml"
+    prefix:   /meetspace/

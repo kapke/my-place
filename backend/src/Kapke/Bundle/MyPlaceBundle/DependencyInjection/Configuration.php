@@ -20,7 +20,8 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('kapke_my_place');
         $rootNode->children()
-            ->variableNode('module');
+            ->variableNode('module')->end()
+            ->variableNode('parser');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

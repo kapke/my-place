@@ -1,3 +1,5 @@
+(function () {
+'use strict';
 function clientFactory (api) {
 	return api.getResource({
 		type: api.BACKEND
@@ -14,3 +16,4 @@ clientFactory.$inject = ['MyPlace.apiService'];
 angular.module('ClientData')
 .factory('ClientData.Client', clientFactory)
 ;
+})();

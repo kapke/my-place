@@ -2,14 +2,12 @@
 namespace Kapke\Module\Notes\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\Annotations\Prefix;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
-
 
 /**
  * @NamePrefix("notes_")
  */
-class NotesController 
+class NotesController
 {
     private $crudController;
 
@@ -23,7 +21,7 @@ class NotesController
 
     public function getNotesAction()
     {
-        return $this->crudController->getEntitiesAction();    
+        return $this->crudController->getEntitiesAction();
     }
 
     public function getNoteAction($id)
@@ -33,7 +31,7 @@ class NotesController
 
     public function postNotesAction(Request $request)
     {
-        return $this->crudController->postEntitiesAction($request);   	
+        return $this->crudController->postEntitiesAction($request);
     }
 
     public function deleteNoteAction($id)

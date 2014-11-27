@@ -4,11 +4,11 @@ function noteView (notesRepository) {
 	var notesCount = 0;
 	return {
 		templateUrl: 'frontend/modules/notes/template/noteView.tpl'
-	  ,	restrict: 'E'
-	  ,	scope: {
+	  , restrict: 'E'
+	  , scope: {
 			note: '='
 		}
-	  ,	controller: function ($scope) {
+	  , controller: function ($scope) {
 	  		notesCount++;
 	  		$scope.editing = false;
 	  		$scope.edited;

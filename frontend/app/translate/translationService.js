@@ -18,7 +18,7 @@ function translationServiceProvider () {
 
 		return {
 			registerModule: moduleRegister
-		  ,	getModules: getModules
+		  , getModules: getModules
 		  , getModule: getModule
 		}
 

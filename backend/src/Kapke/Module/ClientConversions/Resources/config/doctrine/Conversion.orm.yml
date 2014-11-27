@@ -17,7 +17,7 @@ Kapke\Module\ClientConversions\Entity\Conversion:
                 name: client_id
                 referencedColumnName: id
     fields:
-        timestamp: 
+        timestamp:
             type: datetime
         note:
             type: string

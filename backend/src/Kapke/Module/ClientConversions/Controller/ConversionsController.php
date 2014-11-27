@@ -5,8 +5,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;
 use Kapke\Module\ClientConversions\Entity\Conversion;
 
+/**
+ * @NamePrefix("client_conversions_")
+ */
 class ConversionsController extends FOSRestController
 {
     /**

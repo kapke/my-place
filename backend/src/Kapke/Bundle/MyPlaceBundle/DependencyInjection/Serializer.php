@@ -29,7 +29,7 @@ trait Serializer
                     if (method_exists($subvalue, 'jsonSerialize')) {
                         $value[$key] = $subvalue->jsonSerialize();
                     }
-                }   
+                }
             }
             //serializes subobjects
             if (method_exists($value, 'jsonSerialize')) {

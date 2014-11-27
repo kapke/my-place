@@ -7,7 +7,7 @@ function noteFactory (api) {
 	  , name: ['note', 'notes']
 	  , fields: {
 			title: {type: String}
-	  	  ,	content: {defaultValue: ''}
+	  	  , content: {defaultValue: ''}
 	  	}
 	});
 }

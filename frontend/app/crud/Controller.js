@@ -3,8 +3,8 @@
 function controllerFactory (capitalizeFirst) {
 	function Controller ($scope, repository, listeners) {
 		var name = repository.Entity.$name
-		  ,	singularName = name[0]
-		  ,	pluralName = name[1]
+		  , singularName = name[0]
+		  , pluralName = name[1]
 		  , capitalizedSingular = capitalizeFirst(singularName)
 		  , capitalizedPlural = capitalizeFirst(pluralName)
 		  , get = 'get'+capitalizedPlural

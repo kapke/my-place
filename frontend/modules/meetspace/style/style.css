@@ -1,0 +1,36 @@
+event-view .date {
+  display: block;
+  font-style: italic; }
+event-view .more {
+  display: block;
+  text-align: right;
+  cursor: pointer;
+  text-decoration: underline; }
+event-view .details {
+  display: none;
+  background: white;
+  box-shadow: 0em 1px 3px 0 rgba(0, 0, 0, 0.25);
+  position: absolute;
+  left: 240pt;
+  top: 2em;
+  right: 255pt;
+  bottom: 2em;
+  padding: 1em;
+  z-index: 1; }
+  event-view .details .less {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    cursor: pointer; }
+event-view.full .details {
+  display: block; }
+  event-view.full .details:before {
+    content: ' ';
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    opacity: 0.5;
+    z-index: -1; }

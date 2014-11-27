@@ -28,7 +28,7 @@ class Module
         $this->name = $moduleDef['name'];
         $this->title = $moduleDef['title'];
         $this->vendor = $moduleDef['vendor'];
-        $this->parent = isset($moduleDef['parent'])?$moduleDef['parent']:null;
+        $this->parent = isset($moduleDef['parent']) ? $moduleDef['parent'] : null;
     }
 
     public function getSlug()
@@ -49,22 +49,22 @@ class Module
         return substr($slug, 1);
     }
 
-    public function  getName()
+    public function getName()
     {
         return $this->name;
     }
 
-    public function  getTitle()
+    public function getTitle()
     {
         return $this->title;
     }
 
-    public function  getVendor()
+    public function getVendor()
     {
         return $this->vendor;
     }
 
-    public function  getParent()
+    public function getParent()
     {
         return $this->parent;
     }

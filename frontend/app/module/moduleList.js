@@ -7,7 +7,7 @@ function moduleList (moduleManager) {
 			$scope.activeModule = [];
 			$scope.isModuleActive = function (moduleSlug) {
 				return ($scope.activeModule.indexOf(moduleSlug) > -1);
-			}
+			};
 
 			moduleManager.addEventListener('moduleListChanged', function () {
 				$scope.modules = moduleManager.getModules();

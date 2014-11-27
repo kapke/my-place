@@ -18,11 +18,11 @@ class ModuleManager
     {
         $moduleDictionary = [];
         $output = [];
-        foreach($this->modules as $module) {
+        foreach ($this->modules as $module) {
             $moduleDictionary[$module->getName()] = $module;
         }
         foreach ($this->modules as $module) {
-            if($module->hasParent()) {
+            if ($module->hasParent()) {
                 $moduleDictionary[$module->getParent()]->addChild($module);
             } else {
                 $output[] = $module;
@@ -33,21 +33,21 @@ class ModuleManager
 
     public function getModules($tree = false)
     {
-        if($tree) {
-            if($this->moduleTree == null) {
+        if ($tree) {
+            if ($this->moduleTree == null) {
                 $this->buildTree();
             }
+
             return $this->moduleTree;
         } else {
-            return $this->modules;    
+            return $this->modules;
         }
-        
+
     }
 
     public function getModule($name)
     {
         return $this->modules[$name];
     }
-
 
 }

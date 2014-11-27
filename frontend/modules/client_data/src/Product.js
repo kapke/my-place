@@ -5,7 +5,7 @@ function productFactory (api) {
 	  , name: ['product', 'products']
 	  , fields: {
 	  		name: {type: String}
-	  	  ,	vendor: {type: String}
+	  	  , vendor: {type: String}
 	  	  , id: {type: Number}
 	  	}
 	});

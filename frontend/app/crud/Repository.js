@@ -10,15 +10,15 @@ function repositoryFactory ($q, $http, EventListener, capitalizeFirst) {
 
 		var output = [
 			['createEntity', 0, createEntity]
-	 	  ,	['saveEntity', 0, saveEntity]
-	 	  ,	['deleteEntity', 0, deleteEntity]
+	 	  , ['saveEntity', 0, saveEntity]
+	 	  , ['deleteEntity', 0, deleteEntity]
 	 	  , ['updateEntity', 0, updateEntity]
 	 	  , ['getEntity', 1, getEntities]
 	 	  , ['getEmptyEntityData', 0, getEmptyEntityData]
 		];
 		for (var i=0, l=output.length; i<l; i++) {
 			var def = output[i]
-			  ,	funcName = def[0]
+			  , funcName = def[0]
 			  , eName = entityName[def[1]]
 			  , func = def[2]
 			  ;
@@ -34,7 +34,7 @@ function repositoryFactory ($q, $http, EventListener, capitalizeFirst) {
 
 		function createEntity (data) {
 			var entity = new Entity()
-			  ,	emptyData = getEmptyEntityData()
+			  , emptyData = getEmptyEntityData()
 			  ;
 			for(var prop in emptyData) {
 				if(data[prop]) {

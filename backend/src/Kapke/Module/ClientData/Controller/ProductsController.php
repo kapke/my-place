@@ -4,11 +4,9 @@ namespace Kapke\Module\ClientData\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
 use Kapke\Provider\Clients\Entity\Product;
 use Kapke\Provider\Clients\Entity\Vendor;
-
 
 /**
  * @NamePrefix("client_data_")
@@ -54,6 +52,7 @@ class ProductsController extends FOSRestController
         $response = new Response();
         $response->setStatusCode(Response::HTTP_CREATED);
         $response->headers->set('Location', $this->router->generate('client_data_get_product', ['id' => $newProduct->getId()]));
+
         return $response;
     }
 }

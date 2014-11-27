@@ -1,7 +1,6 @@
 <?php
 namespace Kapke\Module\ClientConversions\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Kapke\Provider\Clients\Entity\Product;
 use Kapke\Provider\Clients\Entity\Client;
 
@@ -21,7 +20,7 @@ class Conversion
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -31,7 +30,7 @@ class Conversion
     /**
      * Set timestamp
      *
-     * @param \DateTime $timestamp
+     * @param  \DateTime  $timestamp
      * @return Conversion
      */
     public function setTimestamp($timestamp)
@@ -44,7 +43,7 @@ class Conversion
     /**
      * Get timestamp
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getTimestamp()
     {
@@ -54,7 +53,7 @@ class Conversion
     /**
      * Set note
      *
-     * @param string $note
+     * @param  string     $note
      * @return Conversion
      */
     public function setNote($note)
@@ -67,7 +66,7 @@ class Conversion
     /**
      * Get note
      *
-     * @return string 
+     * @return string
      */
     public function getNote()
     {
@@ -77,7 +76,7 @@ class Conversion
     /**
      * Set product
      *
-     * @param \Kapke\Provider\Clients\Entity\Product $product
+     * @param  \Kapke\Provider\Clients\Entity\Product $product
      * @return Conversion
      */
     public function setProduct(\Kapke\Provider\Clients\Entity\Product $product = null)
@@ -90,7 +89,7 @@ class Conversion
     /**
      * Get product
      *
-     * @return \Kapke\Provider\Clients\Entity\Product 
+     * @return \Kapke\Provider\Clients\Entity\Product
      */
     public function getProduct()
     {
@@ -100,7 +99,7 @@ class Conversion
     /**
      * Set client
      *
-     * @param \Kapke\Provider\Clients\Entity\Client $client
+     * @param  \Kapke\Provider\Clients\Entity\Client $client
      * @return Conversion
      */
     public function setClient(\Kapke\Provider\Clients\Entity\Client $client = null)
@@ -113,7 +112,7 @@ class Conversion
     /**
      * Get client
      *
-     * @return \Kapke\Provider\Clients\Entity\Client 
+     * @return \Kapke\Provider\Clients\Entity\Client
      */
     public function getClient()
     {

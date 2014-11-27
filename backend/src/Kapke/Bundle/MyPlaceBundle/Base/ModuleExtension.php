@@ -18,9 +18,6 @@ abstract class ModuleExtension extends Extension
         $this->dir = dirname($reflectionClass->getFileName());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $kapkeMyPlaceExtension = new KapkeMyPlaceExtension();

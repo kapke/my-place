@@ -3,9 +3,9 @@
 function notesWrapper (notesRepository) {
 	return {
 		restrict: 'E'
-	  ,	templateUrl: 'frontend/modules/notes/template/notesWrapper.tpl'
-	  ,	scope: {notes: '='}
-	  ,	link: function (scope, element) {
+	  , templateUrl: 'frontend/modules/notes/template/notesWrapper.tpl'
+	  , scope: {notes: '='}
+	  , link: function (scope, element) {
 	  		var initialWidth = element.outerWidth(true);
 
 	  		element.css('padding', 0);

@@ -7,7 +7,7 @@ function conversionFactory (api) {
 	  , resource: 'conversions/:clientId/:productId'
 	  , name: ['conversion', 'conversions']
 	  , config: {
-		  	clientId: '@client.id'
+		    clientId: '@client.id'
 		  , productId: '@product.id'
 		}
 	});
