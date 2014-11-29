@@ -1,6 +1,7 @@
 @import '../../../style/base';
 
 event-view {
+	@include card($active: false);
 	.date {
 		display: block;
 		font-style: italic;
@@ -23,6 +24,7 @@ event-view {
 		padding: 1em;
 		z-index: 1;
 		.less {
+			@include button;
 			position: absolute;
 			top: 1em;
 			right: 1em;
@@ -30,8 +32,13 @@ event-view {
 		}
 	}
 	&.full {
+		h3 {
+			font-weight: bold;
+		}
 		.details {
 			display: block;
+			font-weight: normal;
+			overflow-y: scroll;
 			&:before {
 				content: ' ';
 				position: fixed;
@@ -42,6 +49,9 @@ event-view {
 				background-color: $secondaryColor;
 				opacity: 0.5;
 				z-index: -1;
+			}
+			.agenda {
+				@include column;
 			}
 		}
 	}

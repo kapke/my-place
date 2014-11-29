@@ -53,7 +53,7 @@ function eventView ($compile) {
 	  			  , frag = document.createDocumentFragment()
 	  			  , parsed = parser.parseFromString(agenda, 'text/html')
 	  			  ;
-	  			[].forEach.call(parsed.children, function (e) {
+	  			[].forEach.call(parsed.body.children, function (e) {
 	  				frag.appendChild(parseElement(e));
 	  			});
 	  			return frag;

@@ -99,8 +99,7 @@ my-place-menu {
   right: 240pt;
   bottom: 0;
   padding: 15pt;
-  padding-right: 0;
-  transition: all 0.2 linear; }
+  padding-right: 0; }
   my-place-menu.ng-hide-remove {
     -webkit-animation: 0.2s show; }
   my-place-menu.ng-hide-add {
@@ -118,6 +117,29 @@ my-place-menu {
   margin-top: 15pt;
   margin-right: 465pt;
   display: block; }
+  .my-place-content:after {
+    display: block;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1em;
+    box-shadow: 2px 0 3.75pt 0 rgba(0, 0, 0, 0.5);
+    color: transparent;
+    content: ' ';
+    transition: all 0.2s ease-out 0; }
+  .my-place-content:before {
+    z-index: 1;
+    display: block;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1em;
+    color: transparent;
+    background-color: white;
+    content: ' ';
+    transition: all 0.2s ease-out 0; }
   .my-place-content.no-menu {
     margin-right: 240pt; }
     .my-place-content.no-menu:after {
@@ -127,35 +149,16 @@ my-place-menu {
       opacity: 0;
       right: 240pt; }
   .my-place-content:after {
-    display: block;
-    position: fixed;
-    right: 480pt;
-    top: 0;
-    bottom: 0;
-    width: 1em;
-    box-shadow: 2px 0 3.75pt 0 rgba(0, 0, 0, 0.5);
-    color: transparent;
-    content: ' ';
-    transition: all 0.2s linear; }
+    right: 480pt; }
   .my-place-content:before {
-    z-index: 1;
-    display: block;
-    position: fixed;
-    right: 487.5pt;
-    top: 0;
-    bottom: 0;
-    width: 1em;
-    color: transparent;
-    background-color: white;
-    content: ' ';
-    transition: all 0.2s linear; }
+    right: 487.5pt; }
 
 .module-section {
   display: inline-block;
   vertical-align: top;
   margin: 15pt; }
-  .module-section h1, .module-section h2, .module-section h3, .module-section h4, .module-section h5, .module-section h6 {
-    border-bottom: 1px solid #006ab0;
+  .module-section h1, .module-section h2, .module-section h3, .module-section h4, .module-section h5, .module-section h6, .module-section header {
+    font-weight: normal;
     margin-bottom: 7.5pt; }
 
 table {
@@ -173,10 +176,18 @@ form input, form button, form textarea {
   font-family: Ubuntu;
   font-size: 1rem; }
 form button, form input[type="submit"] {
+  box-shadow: 0em 1px 3px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+  border-color: #006ab0;
+  transition: all 0.2s ease-out;
+  padding: 3.75pt 7.5pt;
   float: right;
   color: white;
   border: 1px solid white;
   background-color: #006ab0; }
+  form button:hover, form button.active, form input[type="submit"]:hover, form input[type="submit"].active {
+    transform: translate(0, -2px);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5); }
 
 ul li, ol li {
   margin-left: 30pt;
@@ -187,6 +198,10 @@ ul li, ol li {
     opacity: 1;
     transform: translateX(0); }
 
+  40% {
+    opacity: 0.5;
+    transform: translateX(50%); }
+
   100% {
     opacity: 0;
     transform: translateX(100%); } }
@@ -194,6 +209,10 @@ ul li, ol li {
   0% {
     opacity: 0;
     transform: translateX(100%); }
+
+  40% {
+    opacity: 0.5;
+    transform: translateX(50%); }
 
   100% {
     opacity: 1;

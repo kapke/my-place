@@ -118,7 +118,6 @@ my-place-menu {
 	bottom: 0;
 	padding: 1*$baseLineHeight;
 	padding-right: 0;
-	transition: all 0.2 linear;
 	&.ng-hide-remove {
 		-webkit-animation: 0.2s show;
 	}
@@ -143,6 +142,7 @@ my-place-menu {
 	margin-top: 1*$baseLineHeight;
 	margin-right: $moduleListWidth + $menuWidth;
 	display: block;
+	@include independentShadow;
 	&.no-menu {
 		margin-right: $moduleListWidth;
 		&:after {
@@ -155,38 +155,20 @@ my-place-menu {
 		}
 	}
 	&:after {
-		display: block;
-		position: fixed;
 		right: $moduleListWidth + $menuWidth + $baseLineHeight;
-		top: 0;
-		bottom: 0;
-		width: 1em;
-		box-shadow: 2px 0 0.25*$baseLineHeight 0 rgba(0, 0, 0, 0.5);
-		color: transparent;
-		content: ' ';
-		transition: all 0.2s linear;
 	}
 	&:before {
-		z-index: 1;
-		display: block;
-		position: fixed;
 		right: $moduleListWidth + $menuWidth + 1.5*$baseLineHeight;
-		top: 0;
-		bottom: 0;
-		width: 1em;
-		color: transparent;
-		background-color: $secondaryColor;
-		content: ' ';
-		transition: all 0.2s linear;
 	}
 }
 
 .module-section {
+
 	display: inline-block;
 	vertical-align: top;
 	margin: 1*$baseLineHeight;
-	h1, h2, h3, h4, h5, h6 {
-		border-bottom: 1px solid $primaryColor;
+	h1, h2, h3, h4, h5, h6, header {
+		font-weight: normal;
 		margin-bottom: 0.5*$baseLineHeight;
 	}
 }
@@ -212,6 +194,7 @@ form {
 		font-size: 1rem;
 	}
 	button, input[type="submit"] {
+		@include button;
 		float: right;
 		color: $secondaryColor;
 		border: 1px solid $secondaryColor;
@@ -231,6 +214,10 @@ ul, ol {
 		opacity: 1;
 		transform: translateX(0);		
 	}
+	40% {
+		opacity: 0.5;
+		transform: translateX(50%);
+	}
 	100% {
 		opacity: 0;
 		transform: translateX(100%);
@@ -241,6 +228,10 @@ ul, ol {
 	0% {
 		opacity: 0;
 		transform: translateX(100%);
+	}
+	40% {
+		opacity: 0.5;
+		transform: translateX(50%);
 	}
 	100% {
 		opacity: 1;
