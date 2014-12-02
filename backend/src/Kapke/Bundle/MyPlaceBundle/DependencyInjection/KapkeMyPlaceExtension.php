@@ -1,5 +1,4 @@
 <?php
-
 namespace Kapke\Bundle\MyPlaceBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;

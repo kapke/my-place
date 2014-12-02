@@ -1,3 +1,6 @@
 <section class="module-section" ng-controller="Meetspace.mainCtrl">
-	<event-view ng-repeat="event in events" event="event"></event-view>	
+	<section class="meetspace-filter">
+		<label>Filtruj: <input type="text" ng-model="addressFilter" /></label>
+	</section>
+	<event-view ng-repeat="event in events | filter:addressFilter" event="event"></event-view>	
 </section>

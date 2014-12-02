@@ -1,7 +1,10 @@
 (function () {
 'use strict';
-function eventsRepository (Repository, Event) {
-	var parent = {};
+function eventsRepository (promisifyReturn, Repository, Event) {
+	var parent = {}
+	  , eventsCache
+	  , cities = []
+	  ;
 	Repository.call(parent, Event);
 
 	for(var prop in parent) {
@@ -11,15 +14,23 @@ function eventsRepository (Repository, Event) {
 	this.getEvents = getEvents;
 
 	function getEvents () {
-		return parent.getEvents().then(function (events) {
-			events.forEach(function (ev) {
-				ev.time = new Date(ev.time*1000);
-			});
-			return events;
+		var promisifiedReturn = promisifyReturn(function () {
+			return eventsCache;
 		});
+		if(!eventsCache) {
+			return parent.getEvents().then(function (events) {
+				events.forEach(function (ev) {
+					ev.time = new Date(ev.time*1000);
+				});
+				eventsCache = events;
+				return events;
+			});
+		} else {
+			return promisifiedReturn();
+		}
 	}
 }
-eventsRepository.$inject = ['MyPlace.Crud.Repository', 'Meetspace.Event'];
+eventsRepository.$inject = ['promisifyReturn', 'MyPlace.Crud.Repository', 'Meetspace.Event'];
 
 angular.module('Meetspace')
 .service('Meetspace.eventsRepository', eventsRepository)

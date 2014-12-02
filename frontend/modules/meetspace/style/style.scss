@@ -1,5 +1,11 @@
 @import '../../../style/base';
 
+.meetspace-filter {
+	label {
+		@include card($active: false);
+	}
+}
+
 event-view {
 	@include card($active: false);
 	.date {
@@ -38,7 +44,6 @@ event-view {
 		.details {
 			display: block;
 			font-weight: normal;
-			overflow-y: scroll;
 			&:before {
 				content: ' ';
 				position: fixed;
@@ -50,8 +55,29 @@ event-view {
 				opacity: 0.5;
 				z-index: -1;
 			}
+			header {
+				@include material;
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				height: 6em;
+				padding: 1em;
+				background-color: $secondaryColor;
+				* {
+					background-colo: $secondaryColor;
+				}
+			}
 			.agenda {
 				@include column;
+				background-color: $secondaryColor;
+				overflow: auto;
+				padding: 1em;
+				position: absolute;
+				top: 8em;
+				left: 0;
+				right: 0;
+				bottom: 0;
 			}
 		}
 	}
