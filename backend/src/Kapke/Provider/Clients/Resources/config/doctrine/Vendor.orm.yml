@@ -4,7 +4,7 @@ Kapke\Provider\Clients\Entity\Vendor:
     id:
         id:
             type: integer
-            generatedValue: {strategy: AUTO}
+            generator: {strategy: AUTO}
     fields:
         name:
             type: string

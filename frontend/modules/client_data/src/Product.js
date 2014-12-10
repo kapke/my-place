@@ -6,7 +6,7 @@ function productFactory (api) {
 	  , fields: {
 	  		name: {type: String}
 	  	  , vendor: {type: String}
-	  	  , id: {type: Number}
+	  	  // , id: {type: Number}
 	  	}
 	});
 	Product.prototype.getFullName = function () {

@@ -51,6 +51,9 @@ class CrudController extends FOSRestController
         $entity = $this->entityMetaData->newInstance();
         $em = $this->entityManager;
         foreach ($this->entityMetaData->fieldNames as $fieldName) {
+            if(in_array($fieldName, $this->entityMetaData->identifier)) {
+                continue;
+            }
             $mapping = $this->entityMetaData->fieldMappings[$fieldName];
             $type = $mapping['type'];
             $value = $request->request->get($fieldName);
@@ -77,7 +80,6 @@ class CrudController extends FOSRestController
         $em->persist($entity);
         $em->flush();
         $response = new Response();
-        //print_r($this->getRouteName('GET'));
         $response->headers->set('Location', $this->router->generate($this->getRouteName('GET'), ['id' => $entity->getId()]));
         $response->setStatusCode(Response::HTTP_CREATED);
 

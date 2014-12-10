@@ -6,7 +6,6 @@ class Product
     private $id;
     private $vendor;
     private $name;
-    // private $clients;
 
     public function __construct(Vendor $vendor, $name)
     {
