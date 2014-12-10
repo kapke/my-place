@@ -12,6 +12,7 @@ function productsRepository ($q, EventListener, Product, Vendor, Repository) {
 	
 	function createProduct (data) {
 		var product = parent.createProduct(data);
+		product.fixId();
 		product.fullName = product.getFullName();
 		return product;
 	} 
@@ -19,6 +20,7 @@ function productsRepository ($q, EventListener, Product, Vendor, Repository) {
 	function getProducts (grouped) {
 		return parent.getProducts().then(function (products) {
 			products.forEach(function (product) {
+				product.fixId();
 				product.fullName = product.getFullName();
 			});
 			if(!!grouped) {

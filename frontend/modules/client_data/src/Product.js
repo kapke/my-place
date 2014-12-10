@@ -6,16 +6,21 @@ function productFactory (api) {
 	  , fields: {
 	  		name: {type: String}
 	  	  , vendor: {type: String}
-	  	  // , id: {type: Number}
+	  	  , id: {type: Number}
 	  	}
 	});
+	Product.prototype.fixId = function () {
+		if(this.id === 0) {
+			this.id = undefined;
+		}
+	}
 	Product.prototype.getFullName = function () {
 		var vendorName = '';
 		if(this.vendor) {
 			vendorName = this.vendor.name;
 		}
 		return vendorName+' '+this.name;
-	}
+	};
 
 	return Product;
 }
