@@ -47,16 +47,4 @@ class EventsRepository implements ReadRepository
 		
 		return $event;
 	}
-
-	public function toArray($obj)
-	{
-		$output = [];
-		$output['id'] = $obj->getId();
-		$output['name'] = $obj->getName();
-		$output['time'] = $obj->getTime()->getTimestamp();
-		$output['address'] = $obj->getAddress();
-		$output['agenda'] = $obj->getAgenda();
-
-		return $output;
-	}
 }

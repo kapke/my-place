@@ -16,11 +16,6 @@ class RequestBuilder {
 	private $pathParams;
 	private $params = [];
 	private $headers = [];
- 
-	public function __construct()
-	{
-
-	}
 
 	public function setMethod($method)
 	{
@@ -57,6 +52,7 @@ class RequestBuilder {
 		$url = $this->buildUrl();
 		$request = new Request($this->method, $url['address'], $this->headers);
 		$request->setQuery($url['query']);
+
 		return $request;
 	}
 
@@ -78,6 +74,7 @@ class RequestBuilder {
 		foreach($queryParams as $key => $val) {
 			$queryString[$key] = $val;
 		}
+
 		return [
 			'address' => $url,
 			'query' => $queryString

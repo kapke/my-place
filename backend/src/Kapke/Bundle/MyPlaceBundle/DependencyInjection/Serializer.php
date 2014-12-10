@@ -3,7 +3,7 @@ namespace Kapke\Bundle\MyPlaceBundle\DependencyInjection;
 
 trait Serializer
 {
-    public function jsonSerialize()
+    public function serialize()
     {
         $output = [];
         foreach ($this->serializableProperties as $property) {
@@ -26,18 +26,24 @@ trait Serializer
             //serializes array
             if (is_array($value)) {
                 foreach ($value as $key => $subvalue) {
-                    if (method_exists($subvalue, 'jsonSerialize')) {
-                        $value[$key] = $subvalue->jsonSerialize();
+                    if (method_exists($subvalue, 'serialize')) {
+                        $value[$key] = $subvalue->serialize();
                     }
                 }
             }
             //serializes subobjects
-            if (method_exists($value, 'jsonSerialize')) {
-                $value = $value->jsonSerialize();
+            if (method_exists($value, 'serialize')) {
+                $value = $value->serialize();
             }
             $output[$name] = $value;
         }
 
         return $output;
+    }
+
+    public static function serializeArray (array $arr) {
+        return array_map(function ($item) {
+            return $item->serialize();
+        }, $arr);
     }
 }

@@ -16,6 +16,7 @@ Kapke\Module\ClientConversions\Entity\Conversion:
             joinColumn:
                 name: client_id
                 referencedColumnName: id
+                onDelete: cascade
     fields:
         timestamp:
             type: datetime

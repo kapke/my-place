@@ -6,19 +6,19 @@ function notesWrapper (notesRepository) {
 	  , templateUrl: 'frontend/modules/notes/template/notesWrapper.tpl'
 	  , scope: {notes: '='}
 	  , link: function (scope, element) {
-	  		var initialWidth = element.outerWidth(true);
+			var initialWidth = element.outerWidth(true);
 
-	  		element.css('padding', 0);
-	  		element.css('margin', 0);
+			element.css('padding', 0);
+			element.css('margin', 0);
 
 
-	  		updateNotes();
+			updateNotes();
 
-		  	function updateNotes () {
-		  		var columns = calculateColumns();
-		  		scope.distributedNotes = distributeNotes(scope.notes, columns);
-		  		element.width(initialWidth*columns);
-		  	}
+			function updateNotes () {
+				var columns = calculateColumns();
+				scope.distributedNotes = distributeNotes(scope.notes, columns);
+				element.width(initialWidth*columns);
+			}
 
 			function distributeNotes (notes, columns) {
 				var output = []
@@ -33,30 +33,30 @@ function notesWrapper (notesRepository) {
 					return e.length;
 				});
 				return output;
-			}	  		
+			}			
 
-	  		function calculateColumns () {
-	  			var parentWidth = element.parent().innerWidth()
-		  		  , availableWidth = parentWidth-initialWidth
-		  		  , columns = Math.floor(availableWidth/initialWidth)
-		  		  ;
-		  		return columns;	
-	  		}
-	  		scope.$watch('notes.length', function (newValue, oldValue) {
-	  			if(newValue > oldValue) {
-	  				updateNotes();
-	  			}
-	  		});
-	  		notesRepository.addEventListener('noteDeleted', function (note) {
-	  			scope.distributedNotes.forEach(function (column) {
-	  				var index = column.indexOf(note);
-	  				if(index >= 0) {
-	  					column.splice(index, 1);
-	  				}
-	  			});
-	  		});
-	  		window.addEventListener('resize', updateNotes);
-	  	}
+			function calculateColumns () {
+				var parentWidth = element.parent().innerWidth()
+				  , availableWidth = parentWidth-initialWidth
+				  , columns = Math.floor(availableWidth/initialWidth)
+				  ;
+				return columns;	
+			}
+			scope.$watch('notes.length', function (newValue, oldValue) {
+				if(newValue > oldValue) {
+					updateNotes();
+				}
+			});
+			notesRepository.addEventListener('noteDeleted', function (note) {
+				scope.distributedNotes.forEach(function (column) {
+					var index = column.indexOf(note);
+					if(index >= 0) {
+						column.splice(index, 1);
+					}
+				});
+			});
+			window.addEventListener('resize', updateNotes);
+		}
 	};
 }
 notesWrapper.$inject = ['Notes.notesRepository'];

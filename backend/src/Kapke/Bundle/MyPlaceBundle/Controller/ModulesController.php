@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use FOS\RestBundle\View\View;
 
-use Kapke\Bundle\MyPlaceBundle\Entity\Module;
+use Kapke\Bundle\MyPlaceBundle\DependencyInjection\Serializer;
 
 class ModulesController extends FOSRestController
 {
@@ -21,9 +21,10 @@ class ModulesController extends FOSRestController
 
     public function getModulesAction()
     {
-        $modules = array_map(function ($module) {
-            return $module->jsonSerialize();
-        }, array_values($this->modulesManager->getModules(true)));
+        $modules = Serializer::serializeArray(array_values($this->modulesManager->getModules(true)));
+        // $modules = array_map(function ($module) {
+        //     return $module->jsonSerialize();
+        // }, array_values($this->modulesManager->getModules(true)));
         $view = $this->view($modules);
 
         return $this->handleview($view);

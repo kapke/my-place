@@ -1,6 +1,6 @@
 (function () {
 'use strict';
-function eventView ($compile) {
+function eventView () {
 	return {
 		templateUrl: 'frontend/modules/meetspace/template/eventView.tpl'
 	  , restrict: 'E'
@@ -72,7 +72,7 @@ function eventView ($compile) {
 	    }
 	};
 }
-eventView.$inject = ['$compile'];
+eventView.$inject = [];
 
 angular.module('Meetspace')
 .directive('eventView', eventView)

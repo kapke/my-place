@@ -50,15 +50,15 @@ class Proxy
 		
 		$request = $requestBuilder->getRequest();
 
-		return $this->handleResponse($this->makeRequest($request));
+		return $this->makeRequest($request);
 	}
 
-	protected function makeRequest(Request $request)
+	public function makeRequest(Request $request)
 	{
 		$this->client->enqueue($request)->send();
 		$response = $this->client->getResponse();
 
-		return $response;
+		return $this->handleResponse($response);
 	}
 
 	protected function handleResponse(Response $response)

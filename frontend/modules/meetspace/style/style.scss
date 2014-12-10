@@ -1,5 +1,9 @@
 @import '../../../style/base';
 
+.meetspace.module-section {
+	@include no-card;
+}
+
 .meetspace-filter {
 	label {
 		@include card($active: false);

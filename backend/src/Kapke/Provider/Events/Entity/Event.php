@@ -2,11 +2,31 @@
 namespace Kapke\Provider\Events\Entity;
 
 class Event {
+	use \Kapke\Bundle\MyPlaceBundle\DependencyInjection\Serializer;
+	protected $serializableProperties;
+
 	private $id;
 	private $name;
 	private $address;
 	private $time;
 	private $agenda;
+
+	public function __construct()
+	{
+		$that = $this;
+		$this->serializableProperties = [
+			['name' => 'id'],
+			['name' => 'name'],
+			['name' => 'address'],
+			['name' => 'agenda'],
+			[
+				'name' => 'time',
+				'value' => function () use ($that) {
+					return $that->time->getTimestamp();
+				}
+			]
+		];
+	}
 
 	public function getId()
 	{

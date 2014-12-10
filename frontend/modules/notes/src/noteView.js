@@ -19,7 +19,8 @@ function noteView (notesRepository) {
 
 	  		$scope.deleteNote = function () {
 	  			notesRepository.deleteNote($scope.note);
-	  		}
+	  		};
+
 	  		$scope.edit = function () {
 	  			$scope.$emit('Notes.noteEdit');
 	  			$scope.editing = true;
@@ -27,13 +28,15 @@ function noteView (notesRepository) {
 	  				title: $scope.note.title,
 	  				content: $scope.note.content
 	  			};
-	  		}
+	  		};
+
 	  		$scope.saveEdit = function () {
 	  			$scope.editing = false;
 	  			$scope.note.title = $scope.edited.title;
 	  			$scope.note.content = $scope.edited.content;
 	  			notesRepository.updateNote($scope.note);
-	  		}
+	  		};
+
 	  		$scope.$on('$destroy', function () {
 	  			notesCount--;
 	  		});
@@ -42,7 +45,7 @@ function noteView (notesRepository) {
 	  			$scope.editing = false;
 	  		}
 	  	}
-	}
+	};
 }
 noteView.$inject = ['Notes.notesRepository'];
 

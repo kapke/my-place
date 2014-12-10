@@ -1,4 +1,4 @@
-<section class="module-section" ng-controller="Meetspace.mainCtrl">
+<section class="module-section meetspace" ng-controller="Meetspace.mainCtrl">
 	<section class="meetspace-filter">
 		<label>Filtruj: <input type="text" ng-model="addressFilter" /></label>
 	</section>

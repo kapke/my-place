@@ -7,6 +7,7 @@ use Kapke\Provider\Clients\Entity\Vendor;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
 use Kapke\Bundle\MyPlaceBundle\Base\ReadRepository;
 use FOS\RestBundle\View\View;
+use Kapke\Bundle\MyPlaceBundle\DependencyInjection\Serializer;
 
 /**
  * @NamePrefix("meetspace_")
@@ -32,12 +33,7 @@ class EventsController extends FOSRestController
 			$events = $this->eventsRepository->findAll();
 		}
 		return $this->handleView(
-			$this->view(
-				array_map(
-					[$this->eventsRepository, 'toArray'], 
-					$events
-				)
-			)
+			$this->view(Serializer::serializeArray($events))
 		);
 	}
 

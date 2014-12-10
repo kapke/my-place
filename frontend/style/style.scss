@@ -163,7 +163,7 @@ my-place-menu {
 }
 
 .module-section {
-
+	@include card($active: false);
 	display: inline-block;
 	vertical-align: top;
 	margin: 1*$baseLineHeight;
